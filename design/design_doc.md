@@ -33,7 +33,7 @@
 	- рекомендательную систему с ui-интерфейсом через tg-бот
 - Дополнительный сервис аналитики/логирования
 
-![](https://github.com/uberkinder/DS-landscape/raw/main/design/img/HLD.png)
+![](https://github.com/uberkinder/DS-landscape/raw/main/design/img/HLD_schema.png)
 
 ## Выбор баз данных
 
