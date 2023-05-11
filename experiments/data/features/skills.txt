@@ -1,4 +1,3 @@
-.NET
 .NET Framework
 .Net Core
 199-И
@@ -41,7 +40,6 @@
 4927-У
 590-П
 611-П
-A/B testing Power BI
 A/B тесты
 ABAP
 ABC-анализ
@@ -54,7 +52,6 @@ ASIC
 ASP.NET
 ASan
 AWS
-Access
 Ad Hoc Analysis
 Adex
 Adobe Acrobat
@@ -70,8 +67,6 @@ Ajax
 AllFusion ERwin Data Modeler
 AllFusion Process Modeler
 Amplitude
-Analysis
-Analytical skills
 Analytics/Yandex.metrika
 Anaplan
 Android
@@ -80,7 +75,6 @@ AngularJS
 Ansible
 AnyLogic
 Apache
-Apache Airflow
 Apache HTTP Server
 Apache Ignite
 Apache Maven
@@ -92,7 +86,6 @@ Appsflyer
 ArcGIS
 Archimate
 Architecture
-Arenadata
 Arenadata DB (Greenplum)
 Argo
 Asana
@@ -101,9 +94,7 @@ Atlassian Confluence
 Atlassian Jira
 AutoCAD
 Autodesk Maya
-Azure
 B2B
-B2B Marketing
 B2B SaaS
 B2B Продажи
 B2B маркетинг
@@ -114,14 +105,12 @@ B2C продажи
 BGP
 BI
 BI отчетность
-BI система
 BI системы
 BI-аналитика
 BI-решения
 BIM
 BPM
 BPMN
-BPMN 2.0
 BPWin
 Backend
 Banking
@@ -151,7 +140,6 @@ Business intelligence
 Business skills
 C#
 C++
-C/C++
 CCIE
 CCNP
 CDC
@@ -164,7 +152,6 @@ CMake
 CPA
 CRM
 CRM Битрикс 24
-CRM системы
 CRM-система
 CRO
 CRUD
@@ -197,7 +184,6 @@ Computer troubleshooting
 Concurrency
 Confluence
 Core
-Core Data
 CoreML
 CorelDRAW
 Corporate Finance
@@ -224,30 +210,21 @@ DMBOK DAMA
 DS
 DSP
 DWH
-Dashboard
 Dashboards
 Data Analysis
-Data Analyst
-Data Analytics
 Data Catalog
 Data Center Virtualization
-Data Driven Marketing
-Data Engineer
 Data Engineering
 Data Governance
 Data Like & Data Hub
 Data Mining
-Data Mining: Business Analytica
-Data Mining: SPSS
-Data Mining: Statistica
 Data Platform
 Data Quality
 Data Science
-Data Scientist
 Data Stewards
 Data Studio
 Data Vault
-Data инженер
+Data-Driven Marketing
 Databases
 Dataframe
 DeFi
@@ -262,7 +239,6 @@ Digital
 Digital Marketing
 Digital Ocean
 Distributed systems
-Django
 Django Framework
 Docker
 E-Commerce
@@ -273,11 +249,11 @@ EDR
 EDW
 EFL
 ELK
+ELMA
 EPC
 ER-диаграммы
 ERD
 ERP
-ERP Systems
 ERP-системы на базе 1С
 ESL
 ESP
@@ -287,7 +263,6 @@ Eclipse
 Effector
 Elastic
 Elasticsearch
-Elma
 Email маркетинг
 Embarcadero Delphi
 Embedded systems
@@ -327,6 +302,7 @@ GCP
 GDS
 GIS
 GLM/Regression
+GOlang
 GTM
 GWT
 Galileo
@@ -337,25 +313,17 @@ GetCourse
 Git
 Gitlab
 Gitlab CI
-Golang
 Google
 Google AdWords
 Google Ads
 Google Analytics
-Google Analytics 360 and GA4
 Google Big Query
 Google Chrome
 Google Cloud
-Google Cloud Platform
 Google Data Studio
-Google Data Studiо
 Google Docs
-Google Sheet
 Google Sheets
-Google Spreadsheets
 Google Tag Manager
-Google tables
-Google таблицы
 Gradle/Maven
 Grafana
 GraphQL
@@ -426,7 +394,6 @@ Jmeter
 Joblib
 Juniper
 Jupiter
-Jupyter Notebook
 KPI
 KVM
 Kafka
@@ -443,37 +410,27 @@ LTE
 LTE/5G
 Laravel
 Launching new products
-Leadership Skills
 Linkedin
 Linux
 Luigi
 MATLAB
-MC Excel
 MDM
 MDX
-ML
-ML Engineering
-ML-методы
+MP STATS
 MPLS
 MPP
 MQ
 MS Access
 MS Axapta
-MS Azure
 MS Dynamics CRM
 MS Excel
-MS Excel (уровень: программирование на VBA)
 MS Internet
-MS Internet Explorer
 MS Office
-MS Office (Word
 MS Outlook
-MS Power BI
 MS Power Builder
 MS PowerPoint
 MS Project
 MS SQL
-MS SQL Server
 MS Visio
 MS Visual Basic
 MS Visual Studio
@@ -500,16 +457,12 @@ Mercurial
 Metabase
 Microservices
 Microsoft
-Microsoft Access
 Microsoft Azure
-Microsoft Azure Service Fabric
-Microsoft Visual Studio
 Mind Map
 Miro
 Mitre ATT&CK
 Mockito
 MongoDB
-Mpstats
 Multithread Programming
 Multithreading
 MySQL
@@ -523,7 +476,6 @@ NaiveBayes
 Nest.js
 NetBox
 Networking
-Neural Networks
 Nexus
 Nginx
 NiFi
@@ -534,8 +486,6 @@ Nominatim
 Notion
 Numpy
 OAM
-OLAP
-OLAP-кубы
 ORACLE
 OSI
 OSIsoft
@@ -549,21 +499,18 @@ OpenCL
 OpenCV
 OpenOffice
 OpenShift
-OpenStack
+Openstack
 Oracle 11G
 Oracle BI
 Oracle CRM
 Oracle DBA OCA
 Oracle Data Modelle
-Oracle Database
 Oracle Designer
 Oracle EBS
 Oracle Pl/SQL
 Oracle Primavera
 Oracle Siebel CRM
 Organization Skills
-Outlook)
-Ozon
 P&L
 PBI
 PD
@@ -585,33 +532,25 @@ Pandas
 Performance Management
 Performance marketing
 Pg/SQL
-Photon
-Phyton
 Piton
 Planfix
 Polymatica
 PostGIS
 PostgreSQL
 Postman
-PostreSQL
 Power BI
-Power Bl
 Power Pivot
 Power Point
 Power Query
-Power Shell
-Power qwery
+PowerShell
 Prefect
 Presentation skills
 Principle
 Product Development
 Product Management
 Product Marketing
-Product Owner
 Product Promotion
 Project Documentation
-Project Manager
-Project management
 Prometheus
 Proxmox
 Public Speaking
@@ -628,7 +567,6 @@ Qlik/Tableau/Oracle BI
 QlikView
 Quik
 R
-R-программирование
 RDD
 REST
 REST API
@@ -641,8 +579,6 @@ Random Forest
 Rational Rose
 React
 React JS
-React.js
-Recommender systems
 Recruitment
 Redash
 Redis
@@ -669,11 +605,8 @@ SAP SD
 SAP SRM
 SCALA
 SCSS
-SEO
 SEO оптимизация
-SEO-оптимизация карточек товара
 SIEM
-SIEM systems
 SLA
 SLQ
 SMM
@@ -685,26 +618,19 @@ SOLID
 SPSS
 SQL
 SQL Server Reporting Services
-SQL запросы
-SQL программист
-SQL.
 SQLite
 SSAS
 SSIS
 SSR
-SSRS
 STP
 SVG
 SVN
-SWOT
 SWOT анализ
 SaaS
 Sales Planning
 Sas
 SciPy
-Scikit-learn
 Scrum
-Search ranking
 Security vulnerability disclosure
 Server architectures
 Shell Scripting
@@ -715,16 +641,13 @@ Social listening
 Socket/WebSocket
 Soft skills
 Software Development
-Software architect
 Software architecture
 SonarCube
 Spark
-Spark SQL
 Spark Streaming
 Spatial Transcriptomics
 Specifications
 Sphinx
-Spring
 Spring Boot
 Spring Data
 Spring Framework
@@ -734,7 +657,6 @@ Stack-buffer-overflow
 Start-up project
 Statistica
 Statistics
-Superset
 Swagger
 Swift
 Symfony
@@ -746,15 +668,9 @@ TCP/IP
 TDD
 TS
 Tableau
-Tableu
-Tabular Editor
 TailwindCSS
 TailwindUI
-Team lead
-Team management
 TeamCity
-Teambuilding
-Teamleading
 Teamplayer
 Tech lead
 Technical Translation
@@ -772,14 +688,12 @@ Tilda
 Time management
 Trade Marketing
 Training & Development
-Transact-SQL
 Trees
 Triton
 TypeScript
 UC
 UDP
 UI
-UI/UX
 UML
 US
 USM
@@ -793,7 +707,6 @@ Unity
 Unix
 Usability
 Use Case Analysis
-Use cases
 User Story
 VAD
 VBA
@@ -807,7 +720,6 @@ VPN
 Variational Autoencoders
 Vertica
 Virtualization
-Visio
 Visiology
 Vue.js
 VxLAN
@@ -816,7 +728,6 @@ WEB аналитика
 WEB-тесты
 Web
 Web Design
-Web-дизайн
 WebSocket
 Websphere/RH AMQ
 Wildberries
@@ -838,26 +749,21 @@ YouScan
 Zabbix
 Zend Framework
 Zoom
-a/b-experiments
 adjust
 affiliate marketing
 ahrefs
-airflow
 amoCRM
-analyst
 asyncio
 attribution
 b2b исследования
 babook
 backQORT
 code review
+core data
 dpdk
 esputnik
 getresponse
-go
-hadoop
 hdfs
-hive
 i18n
 iGaming
 iOS
@@ -866,7 +772,6 @@ in-app DSP
 jQuery
 junior
 k8s
-kafka
 libvirt
 lidar
 lightgbm
@@ -875,7 +780,6 @@ marketing
 microservices architecture
 mobx
 network security
-neural nets
 openvz
 outreach
 php-fpm
@@ -886,8 +790,10 @@ presto
 product analytics
 publisher manager
 qemu
+recommender systems
 redux
 rick.ai
+search ranking
 semrush
 sendpulse
 sklearn
@@ -895,16 +801,7 @@ stripo
 table
 web security
 webpack
-xa0— A1 — Начальный
-xa0— A2 — Элементарный
-xa0— B1 — Средний
-xa0— B2 — Средне-продвинутый
-xa0— C1 — Продвинутый
-xa0— C2 — В совершенстве
 xray
-А/Б тестирование
-А/В тесты
-АБ-тесты
 АБС ЦФТ
 АВР
 АСУ ТК
@@ -963,23 +860,15 @@ xray
 Анализ финансовых показателей
 Анализ целевой аудитории
 Анализ ценообразования
-Аналитик
 Аналитик BI
 Аналитик баз данных
 Аналитик данных
-Аналитика
-Аналитика данных
 Аналитика продаж
-Аналитическая работа
 Аналитические исследования
-Аналитические навыки
 Аналитические отчеты
 Аналитические способности
-Аналитический склад ума
 Аналитическое мышление
 Английский
-Английский язык (Intermediate)
-Английский — B2 — Средне-продвинутый
 Андеррайтинг
 Арбитраж трафика
 Архитектура
@@ -993,11 +882,10 @@ xray
 БДДС
 БДР
 БСП
-База данных: Olap
-База данных: Oracle
-Базовые знания SQL
 Базы данных
 Бенчмаркинг
+Бизнес аналитик
+Бизнес требования
 Бизнес-анализ
 Бизнес-аналитика
 Бизнес-консультирование
@@ -1019,7 +907,6 @@ xray
 ВПР
 ВЭД
 Вайлдберис
-Вайлдберриз
 Валидация риск-моделей
 Ввод в эксплуатацию
 Ввод данных
@@ -1040,7 +927,6 @@ xray
 Виртуализация
 Витрины данных
 Владение MS Office
-Внедрение ПО
 Внешняя оптимизация сайта
 Внимательность
 Внимательность к мелочам
@@ -1055,7 +941,6 @@ xray
 Высокая обучаемость
 Высокая степень ответственности
 Высокая энергичность
-Высокая энергичность и инициативность
 Высокие коммуникативные навыки
 Высокий уровень ответственности
 Выставление счетов
@@ -1064,21 +949,16 @@ xray
 ГИС
 ГОСТ
 ГОСТ 19
-ГОСТ34
+ГОСТ 34
 ГРЩ
 Гарантийное обслуживание
 Генерация идей
 Геодезия и картография
 Гибкость
-Гибкость мышления
 Глоссарий
 Государственные структуры
 Готовность обучаться
-Грамотная письменная речь
 Грамотная речь
-Грамотная речь и письмо
-Грамотная устная и письменная речь
-Грамотность
 Группа по электробезопасности
 Групповое обучение
 Дата-центр
@@ -1111,17 +991,13 @@ xray
 Запуск нового бренда
 Запуск новых продуктов
 Защита интеллектуальной собственности
-Знание 1С
-Знание Excel
-Знание Word
-Знание английского языка
+Знание 1 С
 Знание и понимание принципов прогнозирования
 Знание компьютерных программ
 Знание оргтехники
 Знание офисных программ
 Знание программы 1С
 ИКАР
-ИТ
 Имитационное моделирование
 Инвестиции
 Инвестиционная деятельность
@@ -1130,16 +1006,13 @@ xray
 Инвестиционные риски
 Инвестиционный анализ
 Индивидуальное обучение
-Инженер данных
 Инженерные системы
 Инициативность
 Инновационный менеджмент
 Интеграции
 Интеграционные проекты
 Интервьюирование
-Интеренет-маркетинг
 Интернет банк
-Интернет маркетинг
 Интернет-реклама
 Информационная безопасность
 Информационная логистика
@@ -1193,13 +1066,11 @@ xray
 Креативность
 Кредитный анализ
 Кредиторская задолженность
+Криптовалюта
 Критическое мышление
-Лидерские качества
-Лидерство
 Лидогенерация
 Лизинговые операции
 Логика
-Логическое мышление
 Локальные бренды
 Макросы
 Маржинальный анализ
@@ -1217,7 +1088,6 @@ xray
 Математический склад ума
 Математическое моделирование
 Математическое программирование
-Машинное обучение
 Медиа-мониторинг
 Медиапланирование
 Медицинское оборудование
@@ -1285,7 +1155,6 @@ xray
 Нейронные сети
 Нотации для моделирования процессов
 ООП
-Обработка изображений
 Образованность
 Обучение и развитие
 Обучение персонала
@@ -1313,9 +1182,7 @@ xray
 Опыт интеграции и взаимодействия нескольких систем
 Опыт работы с БД
 Опыт работы с таблицами
-Опытный пользователь Excel и MS Office
 Опытный пользователь ПК
-Опытный пользовать ПК
 Организаторские навыки
 Организационное проектирование
 Организационные навыки
@@ -1332,8 +1199,6 @@ xray
 Основы программирования
 Ответственное хранение
 Ответственность
-Ответственность и пунктуальность
-Ответственный подход к работе
 Открытие розничных магазинов
 Отличное знание ПК
 Отчетность
@@ -1390,6 +1255,7 @@ xray
 Построение дашбордов
 Презентационные навыки
 Привлечение клиентов
+Проактивность
 Проведение исследования
 Проведение маркетинговых исследований
 Проведение опросов
@@ -1398,7 +1264,6 @@ xray
 Проведение презентаций
 Проведение промо акций
 Проведение рекламных кампаний
-Проведение тестирований
 Проведение тренинга для новых сотрудников
 Проведение экспериментов
 Прогнозирование
@@ -1408,8 +1273,6 @@ xray
 Продвижение бренда
 Продвижение продукта
 Продвижение сайтов
-Продвинутый пользователь Excel
-Продвинутый пользователь MS Excel
 Продвинутый пользователь ПК
 Продуктовая аналитика
 Продуктовые метрики
@@ -1430,7 +1293,6 @@ xray
 Пунктуальность
 РД50
 РСУБД
-Работа в Excel
 Работа в команде
 Работа в режиме многозадачности
 Работа в условиях многозадачности
@@ -1459,7 +1321,6 @@ xray
 Работа с рекламными сетями
 Работа с сайтом
 Работа с системами аналитики
-Работа с соц.сетями
 Работа с социальными сетями
 Работать в команде
 Развитие бренда
@@ -1481,7 +1342,6 @@ xray
 Разработка регламентов
 Разработка стратегии продвижения продуктов
 Разработка стратегии продвижения товара
-Разработка тестов
 Разработка технических заданий
 Разработка финансовых моделей
 Разработка функциональных моделей
@@ -1514,7 +1374,6 @@ xray
 Розничный бизнес
 Руководство коллективом
 Русский
-С#
 СЗИ
 СКД
 СМЭВ
@@ -1623,17 +1482,12 @@ xray
 Транспортная логистика
 Тренинги по тайм-менеджменту
 Уверенный пользователь MS Office
-Уверенный пользователь Microsoft Excel и 1С8
-Уверенный пользователь ПК
 Удаленная работа
 Умение адаптироваться
-Умение анализировать
-Умение анализировать и интерпретировать данные
 Умение вести деловую переписку
 Умение вести переговоры
 Умение обрабатывать большое количество информации
 Умение организовать работу
-Умение организовывать работу
 Умение планировать
 Умение принимать решения
 Умение работать в коллективе
@@ -1713,7 +1567,6 @@ xray
 Честность
 Штатное расписание
 ЭДО
-Эконометрика
 Экономический анализ
 Экономическое моделирование
 Электронная коммерция
@@ -1724,18 +1577,16 @@ xray
 Я.Метрика
 Языки программирования
 Яндекс аналитика
-Яндекс метрика
 Яндекс.Директ
 Яндекс.Метрика
 анализ абонентской базы
 аналитика рынков
 банк
-бизнес-аналитик
 бизнес-процессы
-бизнес-требования
 веб-технологии
 визуализация результатов
 внедрение ИС
+внедрение ПО
 внедрение сервисов
 внутренний аудит сайта
 воронки продаж
@@ -1748,7 +1599,6 @@ xray
 доступ к электроустановкам
 записок
 защита информации
-знание MS Office
 извлечение сущностей
 интеграция автоматизированных систем
 искусственный интеллект
@@ -1761,25 +1611,20 @@ xray
 конкурентный анализ
 корпоративная аналитика
 кредитные риски
-криптовалюта
 матстатистика
-машинное зрение
 международные отношения
 метаданные
-методологии
 методология
 многопоточный движок
 навыки планирования продаж
 написание аналитических текстов
 написание технических заданий на разработку
 написание технической документации
-нейросети
 обучение сотрудников
 оконные функции
 описание процессов
 опросников
 оптимизация рекламных кампаний
-отчетность в Power BI
 персональные данные
 поддержка
 поисковые алгоритмы
@@ -1789,7 +1634,6 @@ xray
 потребительские кредиты
 презентаций
 принимать решения и за их результаты отвечать самостоятельно
-проактивность
 прогнозирование продаж
 программа лояльности
 продвижение в В2В
@@ -1804,8 +1648,6 @@ xray
 регулирование розничных цен
 реляционные СУБД
 риск-технолог
-руководство командой разработчиков
-руководство проектом
 системный архитектор
 системы энергообеспечения
 скоринг модель
@@ -1813,7 +1655,6 @@ xray
 способность анализировать проблемы
 способность быстро обучаться и легко воспринимать крупные объемы информации
 телефонные продажи
-техническое зрение
 товародвижение
 умение работать с программами Word
 финансы центральный офис
@@ -1821,11 +1662,11 @@ xray
 хранилище данных
 центральные финансы
 чтение ABAP кода
+эконометрика
 экономика
 электрооборудование
 энергоснабжение
 эффективно искать пути их разрешения
-юнит-тестирование
 • Опыт работы в логистической или железнодорожной сфере.
 • Понимание логики формирования грузопотоков и логистических цепочек.
 • Понимание ценообразования рынка перевозок.
