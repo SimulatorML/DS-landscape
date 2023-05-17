@@ -4,6 +4,7 @@ import os
 import random
 import re
 import requests
+from src.data.abstract import Vacancy
 from src.utils import config
 from src.utils.logger import configurate_logger
 from src.utils.currency_exchange import fetch_exchange_rates
@@ -19,27 +20,16 @@ log = configurate_logger('ParserHH')
 @dataclass
 class ParserConfig:
     min_random_sleep_ms : int = 100
-    max_random_sleep_ms : int = 500
+    max_random_sleep_ms : int = 300
 
     data_path : str = 'data/hh_parsed_folder'
     search_resuests : List[str] = field(default_factory = lambda: (
         ['data scientist', 'аналитик данных', 'machine learning', 'data engineer', 'data analyst']))
 
-@dataclass
-class Vacancy:
-    "Ids",
-    "Employer",
-    "Name",
-    "Salary",
-    "From",
-    "To",
-    "Experience",
-    "Schedule",
-    "Keys",
-    "Description",
 
 
-class ParserHH:
+
+class ParserApiHH:
     """Main class for searching vacancies hh.ru via hh api"""
     
     __API_BASE_URL = "https://api.hh.ru/vacancies/"
@@ -163,10 +153,11 @@ if __name__ == '__main__':
     if not os.path.isfile(SETTINGS_PATH):
         config.dump(ParserConfig(), SETTINGS_PATH)
 
-    dc = ParserHH()
+    dc = ParserApiHH()
 
     vacancies = dc.collect_vacancies(
-        query={"text": "FPGA", "area": 113, "per_page": 100},
+        # max per_page = 50
+        query={"text": "Data", "area": 113, "per_page": 50, 'period': 20},
         # refresh=True
         debug=True
     )

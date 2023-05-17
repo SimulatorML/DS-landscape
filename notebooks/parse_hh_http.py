@@ -194,6 +194,7 @@ class hh_parser:
                         'area': area,
                         'hhtmFrom': 'vacancy_search_catalog',
                         'page': page_number,
+                        "per_page": 20
                         }
             
             page_number += 1
