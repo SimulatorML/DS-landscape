@@ -1,5 +1,7 @@
-from concurrent.futures import ThreadPoolExecutor
+from bs4 import BeautifulSoup
 from dataclasses import dataclass, fields, asdict, field
+from datetime import datetime, timedelta
+from fake_useragent import UserAgent
 import os
 import random
 import re
@@ -9,142 +11,327 @@ from src.utils import config
 from src.utils.logger import configurate_logger
 from src.utils.currency_exchange import fetch_exchange_rates
 import time
-from typing import List, Dict, Tuple, Optional
+from typing import List, Dict, Tuple, Optional, Set
 from tqdm import tqdm
 from urllib.parse import urlencode
+import pandas as pd
 
 
-SETTINGS_PATH = "cnf/ParserHH.json"
+
+SETTINGS_PATH = "cnf/ParserApiHH.json"
 log = configurate_logger('ParserHH')
 
 @dataclass
 class ParserConfig:
+    # via hh api
     min_random_sleep_ms : int = 100
     max_random_sleep_ms : int = 300
 
+    # via hh http
+    min_random_sleep_ms_http : int = 1500
+    max_random_sleep_ms_http : int = 4000
+    max_requests_per_session : int = 100   
+
+    # vacancies processing
+    chunk_size : int = 500
+
+    # 113 - Russia
+    # 1 - Moskow
+    # https://api.hh.ru/areas
+    area : int = 113
+    period_days : int = 2
+
     data_path : str = 'data/hh_parsed_folder'
-    search_resuests : List[str] = field(default_factory = lambda: (
+    search_requests : List[str] = field(default_factory = lambda: (
         ['data scientist', 'аналитик данных', 'machine learning', 'data engineer', 'data analyst']))
-
-
-
 
 class ParserApiHH:
     """Main class for searching vacancies hh.ru via hh api"""
     
     __API_BASE_URL = "https://api.hh.ru/vacancies/"
+    __HTTP_BASE_URL = "https://hh.ru/vacancy/"
+    __MAX_PER_PAGE = 50
+    __MAX_VACANCIES_PER_QUERY = 2000
 
     def __init__(self, config_path: str = SETTINGS_PATH):
         self._config : ParserConfig = config.load(config_path) or ParserConfig()
         self._rates = fetch_exchange_rates()
         self._http_tag_re = re.compile("<.*?>")
 
-    def __random_sleep(self) -> None:
+        self.ua = UserAgent()
+        self.requests_per_session = 0
+        self.user_agent = None
+        self.session = None
+        
+
+    def __random_sleep_api(self) -> None:
         """Sleep for random time preventing blocks from hh"""
+
         delay_sec = random.randint(self._config.min_random_sleep_ms, self._config.max_random_sleep_ms) / 1000.0
         time.sleep(delay_sec)
 
-    def clean_tags(self, html_text: str) -> str:
-        return self._http_tag_re.sub("", html_text)
+    def __random_sleep_http(self) -> None:
+        """Sleep for random time preventing blocks from hh"""
 
-    @staticmethod
-    def __convert_gross(is_gross: bool) -> float:
-        return 0.87 if is_gross else 1
+        delay_sec = random.randint(self._config.min_random_sleep_ms_http, self._config.max_random_sleep_ms_http) / 1000.0
+        time.sleep(delay_sec)
 
-    def get_vacancy(self, vacancy_id: str):
-        # Get data from URL
-        url = f"{self.__API_BASE_URL}{vacancy_id}"
-        self.__random_sleep()
-        vacancy = requests.api.get(url).json()
+    def fetch_request(self, target_url: str, params = None) -> requests.Response:
+        """Fetch hh request and sleep random delay"""
 
-        # Extract salary
-        salary = vacancy.get("salary")
+        response = requests.get(target_url, params, timeout=5000)
+        self.__random_sleep_api()
+        return response
 
-        # Calculate salary:
-        # Get salary into {RUB, USD, EUR} with {Gross} parameter and
-        # return a new salary in RUB.
-        from_to = {"from": None, "to": None}
-        if salary:
-            is_gross = vacancy["salary"].get("gross")
-            for k, v in from_to.items():
-                if vacancy["salary"][k] is not None:
-                    _value = self.__convert_gross(is_gross)
-                    from_to[k] = int(_value * salary[k] / self._rates[salary["currency"]])
+    def get_vacancies_ids(self, search_str: str) -> List[str]:
+        """Get ids list for one search_str request"""
 
-        # Create pages tuple
-        return (
-            vacancy_id,
-            vacancy["employer"]["name"],
-            vacancy["name"],
-            salary is not None,
-            from_to["from"],
-            from_to["to"],
-            vacancy["experience"]["name"],
-            vacancy["schedule"]["name"],
-            [el["name"] for el in vacancy["key_skills"]],
-            self.clean_tags(vacancy["description"]),
-        )
+        query = {
+            'text': search_str, 
+            'area': self._config.area,
+            'per_page' : self.__MAX_PER_PAGE,
+            'period' : self._config.period_days
+        }
 
-    @staticmethod
-    def __encode_query_for_url(query: Optional[Dict]) -> str:
-        if 'professional_roles' in query:
-            query_copy = query.copy()
+        log.info('Getting ids for "%s"', search_str)
 
-            roles = '&'.join([f'professional_role={r}' for r in query_copy.pop('professional_roles')])
+        target_url = self.__API_BASE_URL + "?" + urlencode(query)
+        response = self.fetch_request(target_url)
+        num_pages = response.json()["pages"]
 
-            return roles + (f'&{urlencode(query_copy)}' if len(query_copy) > 0 else '')
-
-        return urlencode(query)
-
-    def collect_vacancies(self, query: Optional[Dict], debug : bool = False) -> Dict:
-        """Parse vacancy JSON: get vacancy name, salary, experience etc.
-
-        Parameters
-        ----------
-        query : dict
-            Search query params for GET requests.
-
-        Returns
-        -------
-        dict
-            Dict of useful arguments from vacancies
-
-        """
-
-        url_params = self.__encode_query_for_url(query)
-
-        # Check number of pages...
-        target_url = self.__API_BASE_URL + "?" + url_params
-        num_pages = requests.get(target_url).json()["pages"]
-        self.__random_sleep()
-
-        if debug:
-            num_pages = 1
-
-        # Collect vacancy IDs...
         ids = []
         for idx in range(num_pages + 1):
-            response = requests.get(target_url, {"page": idx})
-            self.__random_sleep()
+            response = self.fetch_request(target_url, {"page": idx}) if idx != 0 else response
             data = response.json()
             if "items" not in data:
                 break
             ids.extend(x["id"] for x in data["items"])
 
-        if debug:
-            ids = ids[:5]
+        log.info('Found %s ids', len(ids))
+        if len(ids) == self.__MAX_VACANCIES_PER_QUERY:
+            log.warning('Found maximum possible vacansies for "%s". ' +
+                'If you want to get all vacancies reduce period or concretize search.', search_str)
 
-        # Collect vacancies...
-        jobs_list = []
-        for vacancy in tqdm(ids):
-            jobs_list.append(self.get_vacancy(vacancy))
+        return ids
 
-        return jobs_list
+    def get_all_vacancies_ids(self, search_requests: List[str], collector: callable) -> pd.DataFrame:
+        """Get ids list for all search requests"""
+
+        data = []
+        for search_str in search_requests:
+            try:
+                data.extend([(search_str, x) for x in collector(search_str)])
+            except Exception as e:
+                log.error('Getting ids failed')
+                log.exception(e, stack_info=True)
+
+        df = pd.DataFrame(data, columns=['query', 'vacancy_id'])
+        df = df.groupby('vacancy_id')['query'].agg(lambda x: x.to_list()).reset_index()
+
+        log.info(f'Found %s total ids, %s unique', len(data), df.shape[0])
+        return df
+
+    def save_vacancies_ids(self, df: pd.DataFrame) -> None:
+        """Save ids dataframe to data folder"""
+
+        filename = f"{datetime.today().strftime('%Y-%m-%d')}-IDS.csv"
+        filename = os.path.join(self._config.data_path, filename)
+        df.to_csv(filename, index=False)
+
+    def load_vacancies_ids(self, filename: str = None) -> pd.DataFrame:
+        """Load ids dataframe from data folder
+        param: filename: Name of the file. If None filename will be determinated automatically if possible"""
+
+        if filename is None:
+            n = 0
+            filename = ""
+            while not os.path.isfile(filename) and n < 30:
+                date = datetime.today() - timedelta(days=n)
+                filename = f"{date.strftime('%Y-%m-%d')}-IDS.csv"
+                filename = os.path.join(self._config.data_path, filename)
+                n += 1
+
+        if os.path.isfile(filename):
+            return pd.read_csv(filename)
+        else:
+            raise ValueError(f'File "{filename}" doesn\'t found')
+
+    def process_ids(self) -> None:
+        """Run collection of ids. Result will be saved to data folder with name like '2023-05-17-IDS.txt'"""
+
+        ids = self.get_all_vacancies_ids(self._config.search_requests, self.get_vacancies_ids)
+        self.save_vacancies_ids(ids)
 
 
+    def get_vacancy_from_api(self, vacancy_id: str) -> Vacancy:
+        """ Get vacancy details via HH API """
 
+        url = f"{self.__API_BASE_URL}{vacancy_id}"
+        self.__random_sleep_api()
+        row = requests.api.get(url, timeout=5000).json()
 
+        salary = row.get("salary")
+        from_to = {"from": None, "to": None}
+        if salary:
+            is_gross = row["salary"].get("gross")
+            for k, v in from_to.items():
+                if row["salary"][k] is not None:
+                    gross_koef = 0.87 if is_gross else 1
+                    from_to[k] = int(gross_koef * salary[k] / self._rates[salary["currency"]])
 
+        vacancy = Vacancy(
+            vacancy_id=vacancy_id,
+            employer=row["employer"]["name"],
+            name=row["name"],
+            salary=salary is not None,
+            salary_from=from_to["from"],
+            salary_to=from_to["to"],
+            experience=row["experience"]["name"],
+            schedule=row["schedule"]["name"],
+            skills=[el["name"] for el in row["key_skills"]],
+            description=self._http_tag_re.sub('', row["description"]),
+            url=url
+        )
+
+        return vacancy
+
+    def _get_http_request(self, url : str) -> requests.Response:
+        """Do request with fake user_agent and session control"""
+        self.requests_per_session += 1
+        if self.session is None or self.requests_per_session % self._config.max_requests_per_session == 0:
+            self.user_agent = self.ua.random
+            self.requests_per_session = 0
+            self.session = requests.Session()
+
+        try:
+            req = self.session.get(url, headers={'User-Agent': self.user_agent})
+            self.__random_sleep_http()
+        except requests.exceptions.RequestException as e:
+            self.session = None
+            log.warning('http session crashed with error: %s', e)
+            return None
+
+        if req.status_code != 200:
+            self.session = None
+            log.warning('http session stopped with status_code: %s', req.status_code)
+            return None
+
+        return req
+    
+    def get_vacancy_from_http(self, vacancy_id: str) -> pd.Series:
+        """ Get vacancy details via HH HTTP """
+
+        url = f"{self.__HTTP_BASE_URL}{vacancy_id}"
+        req = self._get_http_request(url)
+        # req = sessia.get(url, headers={'User-Agent': 'Custom'})
+
+        if req.status_code == 200:
+            soup = BeautifulSoup(req.text, "html.parser")
+
+            uid = re.search('\d+', url).group(0)
+
+            try:
+                name = soup.find(['div'], class_='vacancy-title').h1.text
+            except:
+                name = None
+
+            try:
+                salary = soup.find(attrs={'data-qa': 'vacancy-salary'}).text
+            except:
+                salary = None
+
+            try:
+                experience = soup.find(attrs={'data-qa': 'vacancy-experience'}).text
+            except:
+                experience = None
+
+            try:
+                employment_type = soup.find(attrs={'data-qa': 'vacancy-view-employment-mode'}).text
+            except:
+                employment_type = None
+
+            try:
+                company_name = soup.find(['span'], class_='vacancy-company-name').text
+            except:
+                company_name = None
+
+            try:
+                address = soup.find(attrs={'data-qa': 'vacancy-view-raw-address'}).text
+            except:
+                address = None
+
+            try:
+                text = soup.find(['div'], class_='vacancy-description').text
+            except:
+                text = None
+
+            try:
+                skills = str([el.text for el in soup.findAll(attrs={'data-qa': 'bloko-tag__text'})])
+            except:
+                skills = None
+
+            vacancy = Vacancy(
+                vacancy_id=vacancy_id,
+                employer=company_name,
+                name=name,
+                salary_row=salary,
+                # salary=salary is not None,
+                # salary_from=0,
+                # salary_to=0,
+                experience=experience,
+                schedule=employment_type,
+                skills=skills,
+                description=text,
+                address=address,
+                url=url
+            )
+
+            return vacancy
+            
+        else:
+            return Vacancy()
+
+    def get_vacancy(self, vacancy_id: str) -> Vacancy:
+        """ Get vacancy details via HH HTTP """
+
+        # time.sleep(2.0/1000)
+        # return Vacancy(vacancy_id=vacancy_id)
+
+        # return self.get_vacancy_from_api(vacancy_id)
+        return self.get_vacancy_from_http(vacancy_id)
+
+    def process_vacancies(self, df : pd.DataFrame, chunk_no : int) -> None:
+        """ Process ids to vacancies and save to data folder  """
+
+        filename = f"{datetime.today().strftime('%Y-%m-%d')}-DATA-{chunk_no}.csv"
+        filename = os.path.join(self._config.data_path, filename)
+
+        data = []
+        for id in tqdm(df['vacancy_id']):
+            v = self.get_vacancy(id)
+            if v.vacancy_id != '' and v.vacancy_id is not None:
+                data.append(v)
+
+        pd.DataFrame(data).to_csv(filename, index=False)
+
+        log.info('Processed chunk %s. Total vacancies %s of %s',
+                 chunk_no, len(data), df.shape[0])
+
+    def process_vacancies_chunked(self, ids : pd.DataFrame) -> None:
+        """
+        Process ids to vacancies and save to data folder
+        Process will be splitted to chunks
+        """
+
+        chunk_size = self._config.chunk_size
+        total_chunks = ids.shape[0] // chunk_size + (1 if ids.shape[0] % chunk_size != 0 else 0)
+        for i, df in enumerate([ids.iloc[i:i+chunk_size] for i in range(0, ids.shape[0], chunk_size)]):
+            try:
+                log.info('Processing chunk %s of %s', i+1, total_chunks)
+                self.process_vacancies(df, i+1)
+            except Exception as e:
+                log.critical('Chunk %s did not processing with exception below:', i)
+                log.exception(e, stack_info=True)
 
 
 
@@ -155,10 +342,26 @@ if __name__ == '__main__':
 
     dc = ParserApiHH()
 
-    vacancies = dc.collect_vacancies(
-        # max per_page = 50
-        query={"text": "Data", "area": 113, "per_page": 50, 'period': 20},
-        # refresh=True
-        debug=True
-    )
-    print(vacancies)
+    # vacancies = dc.collect_vacancies(
+    #     # max per_page = 50
+    #     query={"text": "Data", "area": 113, "per_page": 50, 'period': 20},
+    #     # refresh=True
+    #     debug=True
+    # )
+    # print(vacancies)
+
+    #x = dc.get_vacancies_ids('ml')
+    
+    #dc.save_vacancies_ids(set(["11", "12", "22"]))
+
+    # list = [('a', '1'), ('a', '2'), ('b', '1')]
+    # df = pd.DataFrame(list, columns=['col1', 'col2'])
+    # df = df.groupby('col2')['col1'].agg(lambda x: [y for y in x]).reset_index()
+    # dc.save_vacancies_ids(df)
+
+    # dc.process_ids()
+
+    df = dc.load_vacancies_ids()
+    print(df.shape, df.columns)
+
+    dc.process_vacancies_chunked(df)
