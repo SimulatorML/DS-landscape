@@ -5,10 +5,11 @@ Settings here SETTINGS_PATH = 'cnf/ParserApiHH.json'
         avaliable options and default values in ParserConfig class
 
 Exsample of using:
+
     # create object
     dc = ParserApiHH()
 
-    # FIRST stage
+    # FIRST stage (sometimes vpn is needed)
     parsed_ids = dc.get_parsed_ids()
     dc.process_ids(parsed_ids)
 
@@ -19,6 +20,7 @@ Exsample of using:
     All data will be stored in data folder, 'data/hh_parsed_folder' by default        
 
 """
+
 from bs4 import BeautifulSoup
 from dataclasses import dataclass, fields, asdict, field
 from datetime import datetime, timedelta
@@ -36,8 +38,6 @@ from typing import List, Dict, Tuple, Optional, Set, Union
 from tqdm import tqdm
 from urllib.parse import urlencode
 import pandas as pd
-
-
 
 SETTINGS_PATH = "cnf/ParserApiHH.json"
 log = configurate_logger('ParserHH')
@@ -71,7 +71,7 @@ class ParserApiHH:
 
     __API_BASE_URL = "https://api.hh.ru/vacancies/"
     __HTTP_BASE_URL = "https://hh.ru/vacancy/"
-    __MAX_PER_PAGE = 50
+    __MAX_PER_PAGE = 100
     __MAX_VACANCIES_PER_QUERY = 2000
     __DEFAULT_TAX = 0.13
 
@@ -401,7 +401,7 @@ class ParserApiHH:
         ids = set([])
         for fn in [x for x in os.listdir(self._config.data_path) if '-DATA-' in x and x.endswith('.csv')]:
             df = pd.read_csv(os.path.join(self._config.data_path, fn))
-            ids = ids.union(list(df['vacancy_id']))
+            ids = ids.union(list(df['vacancy_id'].astype(str)))
 
         return ids
 
@@ -437,14 +437,14 @@ if __name__ == '__main__':
     
 
     # !!!! this is a SECOND stage
-    # df, filename = dc.load_vacancies_ids()
-    # dc.process_vacancies_chunked(df, filename, specify_chunks=None)
+    df, filename = dc.load_vacancies_ids()
+    dc.process_vacancies_chunked(df, filename, specify_chunks=None)
 
     #dc.process_vacancies(df.head(10), 1, 'temp/data.csv')
 
     #print(filename)
     #print(df.shape)
 
-    parsed_ids = dc.get_parsed_ids()
-    print(len(parsed_ids))
+    #parsed_ids = dc.get_parsed_ids()
+    #print(len(parsed_ids))
 
