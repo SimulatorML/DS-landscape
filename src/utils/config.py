@@ -1,4 +1,25 @@
-""" Configuration files helper """
+""" 
+Configuration files helper
+    - typed configuration
+    - saving in json
+    - building default file or save current config
+
+Exsample of using:
+
+@dataclass
+class ParserConfig:
+    min_random_sleep_ms : int = 100
+    max_random_sleep_ms : int = 300
+
+if not os.path.isfile(SETTINGS_PATH):
+    config.dump(ParserConfig(), SETTINGS_PATH)
+
+self._config : ParserConfig = config.load(config_path) or ParserConfig()
+
+Note:
+    Json is good format, but yaml allow to comment
+
+"""
 import os
 import jsonpickle
 
