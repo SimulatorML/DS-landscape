@@ -213,8 +213,8 @@ class ParserApiHH:
 
         if req.status_code != 200:
             self.session = None
-            log.warning('http session stopped with status_code: %s', req.status_code)
-            return None
+            log.warning('request return status_code: %s (%s)', req.status_code, url)
+            return req
 
         return req
     
@@ -225,7 +225,7 @@ class ParserApiHH:
         req = self._get_http_request(url)
         # req = sessia.get(url, headers={'User-Agent': 'Custom'})
 
-        if req.status_code == 200:
+        if req is not None and req.status_code == 200:
             soup = BeautifulSoup(req.text, "html.parser")
 
             uid = re.search('\d+', url).group(0)
@@ -330,7 +330,7 @@ class ParserApiHH:
                 log.info('Processing chunk %s of %s', i+1, total_chunks)
                 self.process_vacancies(df, i+1)
             except Exception as e:
-                log.critical('Chunk %s did not processing with exception below:', i)
+                log.critical('Chunk %s did not processing with exception below:', i+1)
                 log.exception(e, stack_info=True)
 
 
@@ -362,6 +362,18 @@ if __name__ == '__main__':
     # dc.process_ids()
 
     df = dc.load_vacancies_ids()
-    print(df.shape, df.columns)
+    # dc.process_vacancies_chunked(df)
 
-    dc.process_vacancies_chunked(df)
+
+
+    ids = df
+    chunk_size = dc._config.chunk_size
+    total_chunks = ids.shape[0] // chunk_size + (1 if ids.shape[0] % chunk_size != 0 else 0)
+    for i, df in enumerate([ids.iloc[i:i+chunk_size] for i in range(0, ids.shape[0], chunk_size)]):
+        try:
+            if i+1 == 5 or i+1 == 11:
+                log.info('Processing chunk %s of %s', i+1, total_chunks)
+                dc.process_vacancies(df, i+1)
+        except Exception as e:
+            log.critical('Chunk %s did not processing with exception below:', i+1)
+            log.exception(e, stack_info=True)
