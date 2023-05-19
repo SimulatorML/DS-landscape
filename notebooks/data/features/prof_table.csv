@@ -1,7 +1,0 @@
-prof_name,prof_id,salary_q25,salary_q50,salary_q75,frequency,popular_skills
-Инженер данных,0,92500,155000,230731,0.2602602602602603,"SQL, Python, Английский, Java, PostgreSQL, Linux, ETL, Big Data, Аналитическое мышление, Git"
-Аналитик,1,50000,70035,104400,0.22722722722722724,"Аналитическое мышление, MS PowerPoint, Работа с большим объемом информации, SQL, Анализ данных, Английский, Бизнес-анализ, MS Excel, BPMN, Аналитика"
-Аналитик данных,2,60000,80000,120900,0.23423423423423423,"SQL, Анализ данных, Аналитическое мышление, MS PowerPoint, Python, Работа с большим объемом информации, Английский, Power BI, MS Excel, Бизнес-анализ"
-Bi аналитик,3,60975,87250,135827,0.1961961961961962,"SQL, Power BI, Аналитическое мышление, Английский, MS PowerPoint, Анализ данных, Python, Tableau, MS SQL, Работа с большим объемом информации"
-ML инженер,4,143950,230462,302627,0.05305305305305305,"Python, Английский, Machine Learning, SQL, PyTorch, Linux, Git, Машинное обучение, C++, Pandas"
-Data scientist,5,150000,208750,291632,0.02902902902902903,"Python, SQL, Machine Learning, PyTorch, Английский, Git, Numpy, Pandas, Data Science, Deep Learning"
