@@ -1,4 +1,6 @@
 [core]
-    remote = https://storage.yandexcloud.net/base-storage-s3
-['remote "https://storage.yandexcloud.net/base-storage-s3"']
-    url = https://storage.yandexcloud.net/base-storage-s3
+    remote = storage
+['remote "storage"']
+    url = s3://sim-s3/
+    region = ru-central1
+    endpointurl = https://storage.yandexcloud.net
