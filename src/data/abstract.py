@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import List, Union
+from datetime import date
 
 @dataclass
 class Vacancy:
@@ -17,3 +18,4 @@ class Vacancy:
     address : str = None
     url : str = None
     query : Union[List[str], None] = None # field(default_factory=lambda: [])
+    publish_city_str : str = None
