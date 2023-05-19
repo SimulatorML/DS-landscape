@@ -1,0 +1,523 @@
+[
+    [
+        "1 С Бухгалтерия",
+        "1С: Бухгалтерия"
+    ],
+    [
+        "1C ERP",
+        "1C ЕРП",
+        "1С: ERP"
+    ],
+    [
+        "1C",
+        "1C",
+        "1С.",
+        "1c",
+        "1с",
+        "1C",
+        "1С",
+        "Знание 1С"
+    ],
+    [
+        "AirfFlow",
+        "Airflow",
+        "AirFlow",
+        "Apache Airflow"
+    ],
+    [
+        "Apache Superset",
+        "Superset"
+    ],
+    [
+        "ERP",
+        "ERP)"
+    ],
+    [
+        "ETL\\\\ELT",
+        "ETL"
+    ],
+    [
+        "English",
+        "English for IT",
+        "Английский",
+        "Английский язык",
+        "Английский язык (Intermediate)",
+        "Английский язык (уровень Intermediate)",
+        "Английский — B1 — Средний",
+        "Английский язык (Upper-Intermediate)",
+        "Английский — B2 — Средне-продвинутый",
+        "Знание английского языка",
+        "xa0— A1 — Начальный",
+        "xa0— A2 — Элементарный",
+        "xa0— B1 — Средний",
+        "xa0— B2 — Средне-продвинутый",
+        "xa0— C1 — Продвинутый",
+        "xa0— C2 — В совершенстве"
+    ],
+    [
+        "A/B тестирование",
+        "A/B тесты",
+        "a/b-experiments",
+        "A/B testing Power BI",
+        "Проведение тестирований",
+        "А/Б тестирование",
+        "А/В тесты",
+        "АБ-тесты"
+    ],
+    [
+        "ABC analysis",
+        "ABC-анализ"
+    ],
+    [
+        "Регресcионное тестирование",
+        "Регрессионное тестирование"
+    ],
+    [
+        "1C: Предприятие",
+        "1С: Предприятие"
+    ],
+    [
+        "Cassandra",
+        "Apache Cassandra"
+    ],
+    [
+        "Apache Hadoop",
+        "Hadoop",
+        "hadoop"
+    ],
+    [
+        "Apache Hive",
+        "Hive",
+        "hive"
+    ],
+    [
+        "Apache Kafka",
+        "Kafka"
+    ],
+    [
+        "Apache Spark",
+        "Spark"
+    ],
+    [
+        "AppMetrica",
+        "AppMetrika"
+    ],
+    [
+        "ML",
+        "ML Engineering",
+        "ML-методы",
+        "Машинное обучение",
+        "Machine Learning"
+    ],
+    [
+        "Analytics",
+        "Analysis",
+        "Analytical skills",
+        "Аналитик",
+        "Аналитика",
+        "analyst",
+        "Аналитическая работа",
+        "Аналитические навыки",
+        "Аналитический склад ума",
+        "Аналитическое мышление",
+        "Умение анализировать",
+        "Умение анализировать и интерпретировать данные"
+    ],
+    [
+        "Data Analysis",
+        "Data Analyst",
+        "Data Analytics"
+    ],
+    [
+        "Data Mining",
+        "Data Mining: Business Analytica",
+        "Data Mining: SPSS",
+        "Data Mining: Statistica"
+    ],
+    [
+        "Data инженер",
+        "Data Engineer",
+        "Data Engineering"
+    ],
+    [
+        "Dashboard",
+        "Dashboards"
+    ],
+    [
+        "Data Science",
+        "Data Scientist"
+    ],
+    [
+        "Машинное обучение",
+        "Machine Learning"
+    ],
+    [
+        "OLAP",
+        "OLAP-кубы",
+        "Olap (online analytical processing)",
+        "База данных: Olap"
+    ],
+    [
+        "ORACLE",
+        "Oracle Database",
+        "База данных: Oracle"
+    ],
+    [
+        "Вайлдберис",
+        "Вайлдберриз"
+    ],
+    [
+        "ERP",
+        "ERP Systems"
+    ],
+    [
+        "MS SQL",
+        "MS SQL Server"
+    ],
+    [
+        "MS Visio",
+        "Visio"
+    ],
+    [
+        "MS Access",
+        "Access",
+        "Microsoft Access"
+    ],
+    [
+        "MS Axapta",
+        "Axapta"
+    ],
+    [
+        "MS Azure",
+        "Azure",
+        "Microsoft Azure",
+        "Microsoft Azure Service Fabric"
+    ],
+    [
+        "MS Visual Studio",
+        "Microsoft Visual Studio"
+    ],
+    [
+        "MS Excel",
+        "MS Excel (уровень: программирование на VBA)",
+        "MC Excel",
+        "Знание Excel",
+        "Знание Excel",
+        "Работа в Excel",
+        "Опытный пользователь Excel и MS Office",
+        "Продвинутый пользователь Excel",
+        "Продвинутый пользователь MS Excel"
+    ],
+    [
+        "MS Internet",
+        "MS Internet Explorer"
+    ],
+    [
+        "MS Office",
+        "MS Office (Word",
+        "знание MS Office"
+    ],
+    [
+        "MS Outlook",
+        "Outlook)",
+        "Outlook"
+    ],
+    [
+        "MS Power BI",
+        "отчетность в Power BI",
+        "Power BI",
+        "Power Bl",
+        "PowerBI"
+    ],
+    [
+        "Power Query",
+        "Power qwery"
+    ],
+    [
+        "MS PowerPoint",
+        "PowerPoint"
+    ],
+    [
+        "MS SQL",
+        "MS SQL Server"
+    ],
+    [
+        "MS Visio",
+        "Visio"
+    ],
+    [
+        "Знание Word",
+        "умение работать с программами Word",
+        "MS Word",
+        "Word"
+    ],
+    [
+        "Интернет маркетинг",
+        "Интеренет-маркетинг",
+        "Internet Marketing"
+    ],
+    [
+        "Инженер данных",
+        "дата инженер",
+        "Data Engineer",
+        "Data Engineering",
+        "Data инженер"
+    ],
+    [
+        "Django",
+        "Django Framework"
+    ],
+    [
+        "IT",
+        "ИТ"
+    ],
+    [
+        "Логика",
+        "Логическое мышление"
+    ],
+    [
+        "Аналитик данных",
+        "Аналитика данных",
+        "Data Analysis",
+        "Data Analyst",
+        "Data Analytics"
+    ],
+    [
+        "Data Science",
+        "Data Scientist"
+    ],
+    [
+        "Нейронные сети",
+        "нейросети",
+        "Neural Networks",
+        "neural nets"
+    ],
+    [
+        "Озон",
+        "Ozon"
+    ],
+    [
+        "Опытный пользователь ПК",
+        "Опытный пользовать ПК"
+    ],
+    [
+        "Ответственность",
+        "Ответственность и пунктуальность",
+        "Ответственный подход к работе"
+    ],
+    [
+        "Работа с соц.сетями",
+        "Работа с социальными сетями"
+    ],
+    [
+        "Разработка тестов",
+        "юнит-тестирование",
+        "Unit Testing"
+    ],
+    [
+        "С#",
+        "C#"
+    ],
+    [
+        "C++",
+        "C/C++"
+    ],
+    [
+        "CRM системы",
+        "CRM-система"
+    ],
+    [
+        "B2B Marketing",
+        "B2B маркетинг"
+    ],
+    [
+        "Arenadata",
+        "Arenadata DB (Greenplum)"
+    ],
+    [
+        "BPMN",
+        "BPMN 2.0"
+    ],
+    [
+        "Уверенный пользователь MS Office",
+        "Уверенный пользователь Microsoft Excel и 1С8",
+        "Уверенный пользователь ПК"
+    ],
+    [
+        "Умение анализировать",
+        "Умение анализировать и интерпретировать данные"
+    ],
+    [
+        "Умение организовать работу",
+        "Умение организовывать работу"
+    ],
+    [
+        "Яндекс.Метрика",
+        "Яндекс метрика"
+    ],
+    [
+        "методологии",
+        "методология"
+    ],
+    [
+        "техническое зрение",
+        "Computer Vision",
+        "машинное зрение"
+    ],
+    [
+        "руководство командой разработчиков",
+        "Leadership Skills",
+        "Лидерские качества",
+        "Лидерство",
+        "Team lead",
+        "Team management",
+        "Управление командой",
+        "Teamleading",
+        "Teambuilding"
+    ],
+    [
+        "Product Owner",
+        "руководство проектом",
+        "Управление продуктом"
+    ],
+    [
+        "Project Manager",
+        "Project management",
+        "Управление проектами"
+    ],
+    [
+        "BI система",
+        "BI системы"
+    ],
+    [
+        "Jupiter",
+        "Jupyter Notebook"
+    ],
+    [
+        "Photon",
+        "Phyton",
+        "Python"
+    ],
+    [
+        "PostreSQL",
+        "PostgreSQL"
+    ],
+    [
+        "R",
+        "R-программирование"
+    ],
+    [
+        "SEO",
+        "SEO оптимизация",
+        "SEO-оптимизация карточек товара"
+    ],
+    [
+        "SIEM",
+        "SIEM systems"
+    ],
+    [
+        "SQL Server Reporting Services",
+        "SSRS"
+    ],
+    [
+        "SQL запросы",
+        "SQL программист",
+        "SQL.",
+        "SQL",
+        "Transact-SQL",
+        "Базовые знания SQL"
+    ],
+    [
+        "SWOT",
+        "SWOT анализ"
+    ],
+    [
+        "Software architect",
+        "Software architecture"
+    ],
+    [
+        "Spark",
+        "Spark SQL",
+        "Spark Streaming"
+    ],
+    [
+        "Spring",
+        "Spring Framework"
+    ],
+    [
+        "Web Design",
+        "Web-дизайн"
+    ],
+    [
+        "image processing",
+        "Обработка изображений"
+    ],
+    [
+        ".NET Framework",
+        ".NET"
+    ],
+    [
+        "UX/UI",
+        "UI/UX"
+    ],
+    [
+        "Use Case Analysis",
+        "Use cases"
+    ],
+    [
+        "GOlang",
+        "go"
+    ],
+    [
+        "Google Cloud",
+        "Google Cloud Platform"
+    ],
+    [
+        "Google Analytics",
+        "Google Analytics 360 and GA4"
+    ],
+    [
+        "Google Data Studio",
+        "Google Data Studiо"
+    ],
+    [
+        "Google Sheet",
+        "Google Sheets",
+        "Google Spreadsheets",
+        "Google tables",
+        "Google таблицы"
+    ],
+    [
+        "React",
+        "React.js",
+        "ReactJS"
+    ],
+    [
+        "Tableau",
+        "Tableu",
+        "Tabular Editor"
+    ],
+    [
+        "sklearn",
+        "Scikit-learn"
+    ],
+    [
+        "Высокая энергичность",
+        "Высокая энергичность и инициативность"
+    ],
+    [
+        "Гибкость",
+        "Гибкость мышления"
+    ],
+    [
+        "Грамотная письменная речь",
+        "Грамотная речь",
+        "Грамотная речь и письмо",
+        "Грамотная устная и письменная речь",
+        "Грамотность"
+    ],
+    [
+        "Dashboards",
+        "Дашборды"
+    ]
+]

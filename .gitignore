@@ -116,3 +116,5 @@ ENV/
 .idea/
 
 /temp
+/person_reports
+/wiki

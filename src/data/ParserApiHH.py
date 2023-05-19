@@ -318,6 +318,7 @@ class ParserApiHH:
         company_name = get_text(soup.find(['span'], class_='vacancy-company-name'))
         address = get_text(soup.find(attrs={'data-qa': 'vacancy-view-raw-address'}))
         text = get_text(soup.find(['div'], class_='vacancy-description'))
+        publish_city_str = get_text(soup.find(['p'], class_='vacancy-creation-time-redesigned'))
 
         s = soup.findAll(attrs={'data-qa': 'bloko-tag__text'})
         skills = str([el.text for el in s]) if s is not None else []
@@ -326,7 +327,8 @@ class ParserApiHH:
 
         vacancy = Vacancy(
             vacancy_id=vacancy_id,
-            employer= company_name.replace(u'\xa0', ' ') if company_name is not None else None,
+            employer = company_name.replace(u'\xa0', ' ')
+                        if company_name is not None else None,
             name=name,
             salary_row=salary_row,
             salary=salary,
@@ -335,10 +337,13 @@ class ParserApiHH:
             experience=experience,
             schedule=employment_type,
             skills=skills,
-            description= text.replace('\n', ' ').replace(u'\xa0', ' ') if text is not None else None,
+            description = text.replace('\n', ' ').replace(u'\xa0', ' ')
+                            if text is not None else None,
             address=address,
             url=url,
-            query=query
+            query=query,
+            publish_city_str = publish_city_str.replace('\n', ' ').replace(u'\xa0', ' ')
+                                if publish_city_str is not None else None,
         )
 
         return vacancy
@@ -437,7 +442,7 @@ if __name__ == '__main__':
     
 
     # !!!! this is a SECOND stage
-    df, filename = dc.load_vacancies_ids()
+    df, filename = dc.load_vacancies_ids(filename='data/hh_parsed_folder/2023-05-17-IDS.csv')
     dc.process_vacancies_chunked(df, filename, specify_chunks=None)
 
     #dc.process_vacancies(df.head(10), 1, 'temp/data.csv')

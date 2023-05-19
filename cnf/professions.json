@@ -1,0 +1,138 @@
+[
+    {
+        "query_name": "data scientist",
+        "profession": "Data scientist"
+    },
+    {
+        "query_name": "data science",
+        "profession": "Data scientist"
+    },
+    {
+        "query_name": "специалист по данным",
+        "profession": "Data scientist"
+    },
+    {
+        "query_name": "аналитик данных",
+        "profession": "Аналитик"
+    },
+    {
+        "query_name": "data analyst",
+        "profession": "Аналитик"
+    },
+    {
+        "query_name": "machine learning",
+        "profession": "ML инженер"
+    },
+    {
+        "query_name": "машинное обучение",
+        "profession": "ML инженер"
+    },
+    {
+        "query_name": "ML/DL",
+        "profession": "ML инженер"
+    },
+    {
+        "query_name": "data engineer",
+        "profession": "Инженер данных"
+    },
+    {
+        "query_name": "инженер данных",
+        "profession": "Инженер данных"
+    },
+    {
+        "query_name": "Data Architect",
+        "profession": "Инженер данных"
+    },
+    {
+        "query_name": "data mining",
+        "profession": "Инженер данных"
+    },
+    {
+        "query_name": "business analyst",
+        "profession": "Аналитик"
+    },
+    {
+        "query_name": "data",
+        "profession": "Data scientist"
+    },
+    {
+        "query_name": "cloud computing",
+        "profession": "Big Data"
+    },
+    {
+        "query_name": "deep learning",
+        "profession": "ML инженер"
+    },
+    {
+        "query_name": "computer vision",
+        "profession": "ML инженер"
+    },
+    {
+        "query_name": "Natural Language Processing",
+        "profession": "ML инженер"
+    },
+    {
+        "query_name": "NLP",
+        "profession": "ML инженер"
+    },
+    {
+        "query_name": "Data Visualization",
+        "profession": "Аналитик"
+    },
+    {
+        "query_name": "Data Visualizers",
+        "profession": "Аналитик"
+    },
+    {
+        "query_name": "Artificial intelligence",
+        "profession": "Data scientist"
+    },
+    {
+        "query_name": "Big Data",
+        "profession": "Big Data"
+    },
+    {
+        "query_name": "GPT",
+        "profession": "Data scientist"
+    },
+    {
+        "query_name": "Advanced Analytics",
+        "profession": "Аналитик"
+    },
+    {
+        "query_name": "Data Ops",
+        "profession": "Инженер данных"
+    },
+    {
+        "query_name": "Predictive Analytics",
+        "profession": "Аналитик"
+    },
+    {
+        "query_name": "Data Storyteller",
+        "profession": "Аналитик"
+    },
+    {
+        "query_name": "Machine Learning Scientist",
+        "profession": "ML инженер"
+    },
+    {
+        "query_name": "Business Intelligence Developer",
+        "profession": "Аналитик"
+    },
+    {
+        "query_name": "Machine Learning Engineer",
+        "profession": "ML инженер"
+    },
+    {
+        "query_name": "Database Administrator",
+        "profession": "Инженер данных"
+    },
+    {
+        "query_name": "CV",
+        "profession": "ML инженер"
+    },
+    {
+        "query_name": "ml",
+        "profession": "ML инженер"
+    }
+]
