@@ -40,6 +40,9 @@ import re
 from tqdm import tqdm
 import pickle
 
+import warnings
+warnings.filterwarnings("ignore")
+
 log = configurate_logger('FeaturesProcessor')
 
 class FeaturesProcessor:
@@ -385,7 +388,7 @@ class FeaturesProcessor:
 
     def process(self) -> None:
         """Conduct all process. Input and output date in files"""
-        
+
         self.skills_processing()
         self.professions_processing()
         self.rel_matrix_processing()
