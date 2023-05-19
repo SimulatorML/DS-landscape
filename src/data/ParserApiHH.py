@@ -437,12 +437,12 @@ if __name__ == '__main__':
     # dc.save_vacancies_ids(df)
 
     # !!!! this is a FIRST stage
-    # parsed_ids = dc.get_parsed_ids()
-    # dc.process_ids(parsed_ids)
+    #parsed_ids = dc.get_parsed_ids()
+    #dc.process_ids(parsed_ids)
     
 
     # !!!! this is a SECOND stage
-    df, filename = dc.load_vacancies_ids(filename='data/hh_parsed_folder/2023-05-17-IDS.csv')
+    df, filename = dc.load_vacancies_ids()
     dc.process_vacancies_chunked(df, filename, specify_chunks=None)
 
     #dc.process_vacancies(df.head(10), 1, 'temp/data.csv')

@@ -1,0 +1,4 @@
+[core]
+    remote = https://storage.yandexcloud.net/base-storage-s3
+['remote "https://storage.yandexcloud.net/base-storage-s3"']
+    url = https://storage.yandexcloud.net/base-storage-s3

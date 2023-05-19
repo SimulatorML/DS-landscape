@@ -3,7 +3,7 @@
     "data_path": "data/hh_parsed_folder",
     "min_random_sleep_ms_http" : 150,
     "max_random_sleep_ms_http" : 200,
-    "period_days": 14,
+    "period_days": 2,
     "search_requests": [
         "data scientist",
         "data science",
