@@ -1,7 +1,7 @@
 {
     "py/object": "__main__.ParserConfig",
     "data_path": "data/hh_parsed_folder",
-    "min_random_sleep_ms_http" : 151,
+    "min_random_sleep_ms_http" : 150,
     "max_random_sleep_ms_http" : 200,
     "period_days": 2,
     "search_requests": [
