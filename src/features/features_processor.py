@@ -277,14 +277,113 @@ class FeaturesProcessor:
             lambda i: ', '.join([self.skill_index_to_corrected[x] for x in self.matrix[:,i].argsort()[::-1]][:10]))
         log.info('Updated prof data frame...')
 
+    def update_profset_column(self, xdf: pd.DataFrame) -> pd.DataFrame:
+        """Update (improove) 'prof_set' column"""
+
+        def _simplify(s):
+                return s.lower(). \
+                    replace('"', ' '). \
+                    replace(",", ' '). \
+                    replace('(', ' '). \
+                    replace(')', ' '). \
+                    replace('\\', ' '). \
+                    replace('-', ' '). \
+                    replace('/', ' '). \
+                    replace('.', ' ')
+
+        #xdf['lemm_name'] = _lemmatize(xdf)
+
+        def apply_rule_and(df: pd.DataFrame, prof: str, keywords_list: List[str] = None, only_empty: bool = False) -> pd.DataFrame:
+            if keywords_list is None:
+                keywords_list = [prof]
+
+            for keywords in keywords_list:
+                keywords = re.split(' |-', keywords)
+
+                rule = df.apply(lambda x: 
+                                all([(kw.lower() in x['name'].lower()) for kw in keywords]) and
+                                (only_empty == False or len(x['prof_set_rulebase']) == 0)
+                                , axis=1)
+                filter = df[rule].index
+
+                df.loc[filter, 'prof_set_rulebase'] = \
+                    df.loc[filter, 'prof_set_rulebase'].apply(lambda x: x.union(set([prof])))
+
+            return df
+
+        def apply_rule_kw(df: pd.DataFrame, prof: str, keywords: List[str], only_empty: bool = False) -> pd.DataFrame:
+            for kw in keywords:
+                kw = f' {kw.lower()} '
+                rule = df.apply(lambda x:
+                                kw in ' '+_simplify(x['name'])+' ' and
+                                (only_empty == False or len(x['prof_set_rulebase']) == 0)
+                                , axis=1)
+                filter = df[rule].index
+
+                df.loc[filter, 'prof_set_rulebase'] = \
+                        df.loc[filter, 'prof_set_rulebase'].apply(lambda x: x.union(set([prof])))
+
+            return df
+
+        xdf['prof_set_rulebase'] = [set([]) for _ in range(len(xdf))]
+
+        # Аналитики
+        xdf = apply_rule_and(xdf, 'Системный аналитик')
+        xdf = apply_rule_and(xdf, 'Бизнес-аналитик', ['Бизнес-аналитик', 'Business Analyst'])
+        xdf = apply_rule_and(xdf, 'Аналитик данных', ['Аналитик данных', 'Data Analyst'])
+        xdf = apply_rule_and(xdf, 'Продуктовый аналитик')
+        xdf = apply_rule_and(xdf, 'Аналитик', ['Аналитик', 'Analyst'], only_empty=True)
+
+        # Администратор баз данных
+        xdf = apply_rule_and(xdf, 'Администратор баз данных', ['Администратор баз данных', 'Администратор БД'])
+
+        # Инженеры данных
+        xdf = apply_rule_and(xdf, 'Инженер данных', ['Инженер данных', 'Data Engineer', 
+                        'Дата инженер', 'Data инженер',
+                        'Data Architect', 'Hadoop', 'Kafka'
+        ])
+        xdf = apply_rule_kw(xdf, 'Инженер данных', ['баз данных', 'PostgreSQL', 'MSSQL'], only_empty=True)
+        xdf = apply_rule_kw(xdf, 'Инженер данных', ['Hadoop', 'Kafka'])
+
+
+        # Дата Сайенс
+        xdf = apply_rule_and(xdf, 'Data Scientist')
+
+        # ML инженер
+        xdf = apply_rule_kw(xdf, 'ML инженер', ['ML', 'ETL', 'MLOps'])
+
+        # Big Data
+        xdf = apply_rule_kw(xdf, 'Big Data', ['Big Data', 'Биг Дата', 'DWH', 'Data lake', 'Hadoop', 'Kafka',
+                                            'больших данных', 'большие данные'])
+
+        # остатки
+        xdf = apply_rule_and(xdf, 'Data Scientist', ['Data Science'])
+        xdf = apply_rule_and(xdf, 'Computer Vision', ['Computer Vision', 'CV'])
+        xdf = apply_rule_and(xdf, 'NLP', ['Computer Vision', 'NLP', 'Natural Language Processing'])
+
+        processed = xdf[xdf.prof_set_rulebase.apply(lambda x: x != set([]))].shape[0]
+
+        rule = xdf.prof_set_rulebase.apply(lambda x: x == set([]))
+        filter = xdf[rule].index
+        xdf.loc[filter, 'prof_set_rulebase'] = xdf.loc[filter, 'prof_set']
+
+        #xdf.to_csv('data/prof_ds.csv', index=False, encoding='utf-8')
+        xdf['prof_set'] = xdf['prof_set_rulebase']
+        xdf = xdf.drop(columns=['prof_set_rulebase'])
+
+        # Total: 3339, processed: 3133
+        #print(f'Total: {xdf.shape[0]}, processed: {processed}')
+
+        return xdf
+
+
     def professions_processing(self) -> None:
         """Professions preprocess:
             Add column 'prof_set' to self.df
 
         Save files:
-            - 'quety_to_prof_index.pkl': dict query name to professio index
             - 'prof_index_to_prof_name': dict profession index to profession name
-
+            - 'vacancy_profset.csv': data frame [vacancy_id, prof_set]
         """
 
         log.info('Processing professions...')
@@ -304,34 +403,23 @@ class FeaturesProcessor:
 
         self.df['prof_set'] = self.df['query'].apply(query_to_prof_set)
 
-        self.quety_to_prof_index = {}
+        # improove prof_set
+        self.df = self.update_profset_column(self.df)
+
+        # calculate prof_index_to_prof_name
         self.prof_index_to_prof_name = {}
-        self.prof_to_index = {}
+        all_prof = set().union(*self.df.prof_set.to_list())
+        for i, n in enumerate(all_prof):
+            self.prof_index_to_prof_name[i] = n
 
-        # get unique queries
-        query_set_series = self.df['query'].apply(
-            lambda s : {x.strip(" '") for x in re.split(r, s.strip('[]'))} - {''})
-        all_queries = set().union(*query_set_series.to_list())
-
-        # calcutate quety_to_prof_index and prof_index_to_prof_name
-        new_index = 0
-        for q in all_queries:
-            prof = prof_map.get(q, q)
-            index = self.prof_to_index.get(prof, new_index)
-            self.prof_to_index[prof] = index
-            self.prof_index_to_prof_name[index] = prof
-            self.quety_to_prof_index[q] = index
-            if new_index == index:
-                new_index += 1
-
-        # save quety_to_prof_index and prof_index_to_prof_name
-        filename = os.path.join(self.features_folder, 'quety_to_prof_index.pkl')
-        with open(filename, 'wb') as f:
-            pickle.dump(self.quety_to_prof_index, f)
-
+        # save prof_index_to_prof_name
         filename = os.path.join(self.features_folder, 'prof_index_to_prof_name.pkl')
         with open(filename, 'wb') as f:
             pickle.dump(self.prof_index_to_prof_name, f)
+
+        # save prof_set
+        filename = os.path.join(self.features_folder, 'vacancy_profset.csv')
+        self.df[['vacancy_id', 'prof_set']].to_csv(filename, index=False, encoding='utf-8')
 
         # create prof_df data frame
         self.prof_df = pd.DataFrame()
@@ -369,11 +457,15 @@ class FeaturesProcessor:
         """
 
         log.info('Creating relationship matrix...')
+
+        prof_to_index = {}
+        for k, v in self.prof_index_to_prof_name.items():
+            prof_to_index[v] = k
         
         self.matrix = np.zeros((len(self.skill_index_to_corrected), len(self.prof_index_to_prof_name)))
         for row in self.df[['prof_set', 'skill_set']].to_numpy():
             for prof in row[0]:
-                prof_id = self.prof_to_index[prof]
+                prof_id = prof_to_index[prof]
                 for skill in row[1]:
                     skill_id = self.skill_original_to_index[skill]
                     self.matrix[skill_id, prof_id] += 1
@@ -403,4 +495,6 @@ if __name__ == '__main__':
 
     FeaturesProcessor().process()
 
-    
+    # df = pd.read_csv('data/processed/vacancies.csv', encoding='utf-8')
+    # df = fp.update_prof_set(df)
+    # df.to_csv('temp/prof_ds.csv', index=False, encoding='utf-8')
