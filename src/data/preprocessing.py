@@ -27,6 +27,7 @@ from dataclasses import dataclass, asdict
 import os
 from src.data.abstract import Vacancy
 from src.utils.logger import configurate_logger
+from src.data.filtring import RelevantVacancyClassifier
 from typing import Union
 import pandas as pd
 from natasha import DatesExtractor, MorphVocab, AddrExtractor
@@ -35,6 +36,7 @@ from pymystem3 import Mystem
 from tqdm import tqdm
 
 log = configurate_logger('Preprocessor')
+
 
 @dataclass
 class Preprocessor:
@@ -74,6 +76,17 @@ class Preprocessor:
         df = df.reset_index(drop=True)
         df['description'] = df['description'].apply(lambda x: x.strip())
         return df
+
+    def filtering(self, df: pd.DataFrame, model_path: str = 'models/RelevantVacancyClassifier.pkl') -> pd.DataFrame:
+        """Filtring relevant vacancies to DataScience"""
+
+        clf = RelevantVacancyClassifier()
+        clf.load(model_path)
+
+        df['predict'] = clf.predict(df[['name']])
+        df = df[df.predict == 1].drop(columns=['predict'])
+
+        return df   
 
     def extract_features(self, df: pd.DataFrame) -> pd.DataFrame:
         """
@@ -141,6 +154,7 @@ class Preprocessor:
             """
         df = self.load_from_folder()
         df = self.data_cleaning(df)
+        df = self.filtering(df)
         df = self.extract_features(df)
         df = self.drop_text_duplicates(df)    
         self.save_df(df)
