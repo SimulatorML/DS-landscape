@@ -53,7 +53,7 @@
     },
     {
         "query_name": "data",
-        "profession": "Data scientist"
+        "profession": "Data Scientist"
     },
     {
         "query_name": "cloud computing",
@@ -85,7 +85,7 @@
     },
     {
         "query_name": "Artificial intelligence",
-        "profession": "Data scientist"
+        "profession": "Data Scientist"
     },
     {
         "query_name": "Big Data",
@@ -93,7 +93,7 @@
     },
     {
         "query_name": "GPT",
-        "profession": "Data scientist"
+        "profession": "Data Scientist"
     },
     {
         "query_name": "Advanced Analytics",
@@ -134,5 +134,17 @@
     {
         "query_name": "ml",
         "profession": "ML инженер"
+    },
+    {
+        "query_name": "Аналитик BI",
+        "profession": "Аналитик BI"
+    },
+    {
+        "query_name": "BI Аналитик",
+        "profession": "Аналитик BI"
+    },
+    {
+        "query_name": "BI analyst",
+        "profession": "Аналитик BI"
     }
 ]
