@@ -5,12 +5,14 @@ Extract: from row_data_folder
 Transform: cleaning and creating few simple new features
 Load: save to result_data_folder to 'vacancies.csv' file
 
-New features:
+New features/columns:
     - employment_type - 'Полная занятость', 'Частичная занятость', etc
     - employment_workhours - 'Полный день', 'Гибкий график', etc
     - publish_date - data of publishing
     - city
     - city_rating
+    - name_lemm
+    - description_lemm
 
 Exsample of using:
 
@@ -139,6 +141,39 @@ class Preprocessor:
         return df.sort_values(['description', 'publish_date', 'city_rating'],
                                 ascending=[True, False, False]). \
                         groupby('description', as_index=False).first()
+    
+    def generate_lemm(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Add columns:
+            - name_lemm
+            - description_lemm
+            """
+
+        m = Mystem()
+
+        def lemmatize(text):
+            def simplify(s):
+                return s.lower(). \
+                    replace('"', ' '). \
+                    replace(",", ' '). \
+                    replace('(', ' '). \
+                    replace(')', ' '). \
+                    replace('\\', ' '). \
+                    replace('-', ' '). \
+                    replace('/', ' '). \
+                    replace('.', ' ')
+            
+            lemmas = [x.strip() for x in m.lemmatize(simplify(text)) if x.strip() != '']
+            return ' '.join(lemmas)
+        
+        log.info('Lemmatize name...')
+        df['name_lemm'] = df.name.progress_apply(lemmatize)
+
+        log.info('Lemmatize description...')
+        df['description_lemm'] = df.description.progress_apply(lemmatize)
+
+        log.info('Lemmatization finished')
+
+        return df
 
     def save_df(self, df: pd.DataFrame) -> None:
         """ save resulted dataframe to file"""
@@ -157,6 +192,10 @@ class Preprocessor:
         df = self.filtering(df)
         df = self.extract_features(df)
         df = self.drop_text_duplicates(df)    
+        df = self.generate_lemm(df)
+
+        log.info('Dataframe shape = %s', df.shape)
+
         self.save_df(df)
         return df
 
