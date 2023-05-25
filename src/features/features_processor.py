@@ -22,7 +22,6 @@ Feature processing:
                 ['prof_name', 'prof_id', 'salary_q25', 'salary_q50', 'salary_q75', 'frequency', 'popular_skills']
         - 'matrix.pkl': skill-profession relationship matrix (numpy.array[skill_id, prof_id])
 
-        Save matrix to 'matrix.csv' file
 
 Exsample of using:
     FeaturesProcessor().process()
@@ -39,6 +38,9 @@ from typing import Tuple, Dict, List
 import re
 from tqdm import tqdm
 import pickle
+import nltk
+from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -454,7 +456,7 @@ class FeaturesProcessor:
         Return and save skill-profession relationship matrix
         Matrix dim is about 8000x10 therefore numpy is enough
 
-        Save matrix to 'matrix.csv' file
+        Save matrix to 'matrix.pkl' file
         """
 
         log.info('Creating relationship matrix...')
@@ -475,20 +477,60 @@ class FeaturesProcessor:
         with open(filename, 'wb') as f:
             pickle.dump(self.matrix, f)
 
-        log.info('Created relationship matrix...')
+        log.info('Created relationship matrix')
 
         return self.matrix
+
+    def rel_matrix_tfidf_processing(self, column: str) -> np.array:
+        """
+        Save relationship matrix ased tf-idf of name or description
+        bla-bla-bla
+        
+        Embeddings quality is VERY low
+        """
+
+        log.info('Creating relationship matrix (TF-IDF of name)...')
+
+        nltk.download('stopwords')
+        stop_words = set(stopwords.words('english')).union(stopwords.words('russian'))
+
+        skill_text = []
+        for si in tqdm(self.skill_index_to_corrected.keys()):
+            # you can try unique text
+            st = ' '.join(self.df[self.df.skill_ind_set.apply(lambda x: si in x)][column])
+            skill_text.append(st)
+
+        # you can try CountVectorizer
+        vectorizer = TfidfVectorizer(stop_words=list(stop_words))
+        X = vectorizer.fit_transform(skill_text)
+
+        filename = f'../data/features/matrix_{column}_tfidf.pkl'
+        with open(filename, 'wb') as f:
+            # numpy for compatibility (35Mb numpy vs 0.4Mb scr_matrix)
+            #  but for descriptins it's 650Mb!
+            pickle.dump(X.toarray(), f)  
+
+        log.info('Created relationship matrix (TF-IDF of name)')
+
+        return X
 
     def process(self) -> None:
         """Conduct all process. Input and output date in files"""
 
         self.skills_processing()
         self.professions_processing()
+
         self.rel_matrix_processing()
+        # tf-ifd не зашло, просто раскиданные точки
+        # self.rel_matrix_tfidf_processing('name_lemm')
+        # self.rel_matrix_tfidf_processing('description_lemm')
+        
         self.update_skill_df()
         self.save_skill_df()
+
         self.update_prof_df()
         self.save_prof_df()
+        
         log.info('Feature procissing completed')
 
 
