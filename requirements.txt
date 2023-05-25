@@ -10,3 +10,4 @@ pymystem3==0.2.0
 scikit-learn==1.2.2
 nltk==3.8.1
 lightgbm==3.3.5
+hvplot==0.8.3
