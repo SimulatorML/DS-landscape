@@ -156,7 +156,7 @@ class ParserApiHH:
             parsed_ids = set([])
 
         data = []
-        for search_str in search_requests:
+        for search_str in [x for x in search_requests if not x.startswith('--')]:
             try:
                 data.extend([(search_str, x) for x in collector(search_str)])
             except Exception as e:
@@ -199,7 +199,8 @@ class ParserApiHH:
             raise ValueError(f'File "{filename}" doesn\'t found')
 
     def process_ids(self, process_ids : Set[str] = None) -> None:
-        """Run collection of ids. Result will be saved to data folder with name like '2023-05-17-IDS.txt'"""
+        """Run collection of ids. Result will be saved to data folder with name like '2023-05-17-IDS.txt'
+        param: process_ids: set of ignored ids"""
 
         ids = self.get_all_vacancies_ids(
             self._config.search_requests, self.get_vacancies_ids, process_ids)
@@ -437,8 +438,8 @@ if __name__ == '__main__':
     # dc.save_vacancies_ids(df)
 
     # !!!! this is a FIRST stage
-    #parsed_ids = dc.get_parsed_ids()
-    #dc.process_ids(parsed_ids)
+    # parsed_ids = dc.get_parsed_ids()
+    # dc.process_ids(parsed_ids)
     
 
     # !!!! this is a SECOND stage

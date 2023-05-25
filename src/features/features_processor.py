@@ -330,6 +330,7 @@ class FeaturesProcessor:
         # Аналитики
         xdf = apply_rule_and(xdf, 'Системный аналитик')
         xdf = apply_rule_and(xdf, 'Бизнес-аналитик', ['Бизнес-аналитик', 'Business Analyst'])
+        xdf = apply_rule_kw(xdf, 'Аналитик BI', ['Аналитик BI', 'BI analyst'], only_empty=True)
         xdf = apply_rule_and(xdf, 'Аналитик данных', ['Аналитик данных', 'Data Analyst'])
         xdf = apply_rule_and(xdf, 'Продуктовый аналитик')
         xdf = apply_rule_and(xdf, 'Аналитик', ['Аналитик', 'Analyst'], only_empty=True)
@@ -398,7 +399,7 @@ class FeaturesProcessor:
             query_set = {x.strip(" '") for x in re.split(r, s.strip('[]'))} - {''}
             prof_set = set([])
             for q in query_set:
-                prof_set.add(prof_map.get(q, q))
+                prof_set.add(prof_map.get(q.strip('"'), q))
             return prof_set
 
         self.df['prof_set'] = self.df['query'].apply(query_to_prof_set)
