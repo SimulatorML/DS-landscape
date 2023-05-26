@@ -1,5 +1,5 @@
 outs:
-- md5: 66dbcee2b6304ac4b9b740cdd8f47286.dir
-  size: 197857656
-  nfiles: 96
+- md5: 1be9f251cfd93808511de3bcbc8cd531.dir
+  size: 104000259
+  nfiles: 50
   path: hh_parsed_folder
