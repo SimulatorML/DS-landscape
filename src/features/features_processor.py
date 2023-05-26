@@ -514,6 +514,30 @@ class FeaturesProcessor:
 
         return X
 
+    def rel_matrix_vacancy_processing(self) -> np.array:
+        """
+        Matrix vacany-skill (not prof-skil)
+        Bad idea too :(
+
+        Save matrix to 'matrix_val.pkl' file
+        """
+
+        log.info('Creating relationship vacancy matrix...')
+
+        matrix_vac = np.zeros((len(self.skill_index_to_corrected), self.df.shape[0]))
+        for vi in self.df.index:
+            ss = self.df.loc[vi, 'skill_ind_set']
+            for si in ss:
+                matrix_vac[si, vi] += 1
+
+        filename = os.path.join(self.features_folder, 'matrix_vac.pkl')
+        with open(filename, 'wb') as f:
+            pickle.dump(matrix_vac, f)
+
+        log.info('Created relationship vacancy matrix')
+
+        return matrix_vac
+
     def process(self) -> None:
         """Conduct all process. Input and output date in files"""
 
@@ -524,6 +548,8 @@ class FeaturesProcessor:
         # tf-ifd не зашло, просто раскиданные точки
         # self.rel_matrix_tfidf_processing('name_lemm')
         # self.rel_matrix_tfidf_processing('description_lemm')
+        # bad idea too
+        # self.rel_matrix_vacancy_processing()
         
         self.update_skill_df()
         self.save_skill_df()
