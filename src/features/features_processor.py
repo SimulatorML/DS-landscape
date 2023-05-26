@@ -15,6 +15,7 @@ Feature processing:
         - 'skills.txt': all skills after corrections ordered by name
         - 'skill_index_to_corrected.pkl': dictionary skill index to corrected skill name
         - 'skill_original_to_index.pkl': dictionary skill name to index
+        - 'prof_index_to_prof_name.pkl': dictinary prof index to prof name
         - 'skills.csv': dataframe with columns:
                 ['skill_name', 'skill_id', 'salary_q25', 'salary_q50', 'salary_q75', 'frequency', 
                     'popular_profession_id', 'popular_profession_name', <professions>]
