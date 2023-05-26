@@ -119,3 +119,4 @@ ENV/
 /person_reports
 /wiki
 /models
+/.dvc

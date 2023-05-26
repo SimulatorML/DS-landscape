@@ -1,6 +1,0 @@
-[core]
-    remote = storage
-['remote "storage"']
-    url = s3://sim-s3/
-    region = ru-central1
-    endpointurl = https://storage.yandexcloud.net
