@@ -1,0 +1,8 @@
+[core]
+    remote = storage
+['remote "storage"']
+    url = s3://sim-s3/sim
+    region = ru-central1
+    endpointurl = https://storage.yandexcloud.net
+    access_key_id = YCAJEQaD7fob_VCCpjWFcaoh1
+    secret_access_key = YCP0W92pHWbTSM-Y_mO06pAWa-g9JCnY5HSlmAeY
