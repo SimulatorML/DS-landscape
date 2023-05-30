@@ -42,8 +42,8 @@ log = configurate_logger('Preprocessor')
 
 @dataclass
 class Preprocessor:
-    row_data_folder : str
-    result_data_folder : str
+    row_data_folder : str = 'data/hh_parsed_folder'
+    result_data_folder : str = 'data/processed'
 
     def __post_init__(self):
         tqdm.pandas()
