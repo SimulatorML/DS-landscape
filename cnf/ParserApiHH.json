@@ -7,9 +7,9 @@
     "search_requests": [
         "\"data scientist\"",
         "\"data science\"",
-        "--\"специалист по данным\"",
-        "--\"аналитик данных\"",
-        "--\"data analyst\"",
+        "\"специалист по данным\"",
+        "\"аналитик данных\"",
+        "\"data analyst\"",
         "\"machine learning\"",
         "\"машинное обучение\"",
         "ML/DL",
@@ -36,9 +36,9 @@
         "\"Machine Learning Scientist\"",
         "\"Machine Learning Engineer\"",
         "--\"Business Intelligence Developer\"",
-        "--\"Database Administrator\"",
-        "\"Аналитик BI\"",
-        "\"BI Аналитик\"",
-        "\"BI analyst\""
+        "\"Database Administrator\"",
+        "--\"Аналитик BI\"",
+        "--\"BI Аналитик\"",
+        "--\"BI analyst\""
     ]
 }

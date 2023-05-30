@@ -202,9 +202,7 @@ class Preprocessor:
 
 if __name__ == '__main__':
 
-    preprocessor = Preprocessor(
-        row_data_folder='data/hh_parsed_folder',
-        result_data_folder='data/processed')
+    preprocessor = Preprocessor()
 
     df = preprocessor.process()
 

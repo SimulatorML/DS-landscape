@@ -1,4 +1,5 @@
 from src.data.ParserApiHH import ParserApiHH
+from src.data.ParserApiHH import ParserConfig
 from src.data.preprocessing import Preprocessor
 from src.features.features_processor import FeaturesProcessor
 
