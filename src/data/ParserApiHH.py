@@ -198,12 +198,12 @@ class ParserApiHH:
         else:
             raise ValueError(f'File "{filename}" doesn\'t found')
 
-    def process_ids(self, process_ids : Set[str] = None) -> None:
+    def process_ids(self, parsed_ids : Set[str] = None) -> None:
         """Run collection of ids. Result will be saved to data folder with name like '2023-05-17-IDS.txt'
         param: process_ids: set of ignored ids"""
 
         ids = self.get_all_vacancies_ids(
-            self._config.search_requests, self.get_vacancies_ids, process_ids)
+            self._config.search_requests, self.get_vacancies_ids, parsed_ids)
         self.save_vacancies_ids(ids)
 
     def get_vacancy_from_api(self, vacancy_id: str, query: str) -> Union[Vacancy, None]:
