@@ -14,3 +14,6 @@ DS Landscape allows:
 
 Our goal is to reduce the distance between the desired specialty and the process of obtaining skills.
 
+See **Design Doc** for details:
+[Design Doc.md](https://github.com/uberkinder/DS-landscape/blob/main/design/Design%20Doc.md) or 
+[Design Doc.pdf](https://github.com/uberkinder/DS-landscape/blob/main/design/Design%20doc.pdf)
