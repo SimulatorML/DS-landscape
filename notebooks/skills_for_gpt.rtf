@@ -1,0 +1,542 @@
+{\rtf1\ansi\ansicpg1251\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red42\green49\blue64;\red245\green245\blue246;\red255\green255\blue255;
+\red0\green0\blue0;\red144\green1\blue18;\red19\green118\blue70;\red0\green0\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c21569\c25490\c31765;\cssrgb\c96863\c96863\c97255;\cssrgb\c100000\c100000\c100000;
+\cssrgb\c0\c0\c0;\cssrgb\c63922\c8235\c8235;\cssrgb\c3529\c52549\c34510;\cssrgb\c0\c0\c100000;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid1\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat85\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid101\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat151\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid201\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat190\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid301\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat228\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid401\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid5}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww16640\viewh12800\viewkind0
+\deftab720
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f0\fs32 \cf2 \cb3 		\uc0\u1089 \u1087 \u1080 \u1089 \u1086 \u1082  \u1087 \u1086 \u1093 \u1086 \u1078 \u1080 \u1093  \u1087 \u1072 \u1088  \u1089 \u1092 \u1086 \u1088 \u1084 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085  ChatGPT \u1085 \u1072  \u1086 \u1089 \u1085 \u1086 \u1074 \u1077  \u1079 \u1072 \u1087 \u1088 \u1086 \u1089 \u1072 \
+		\uc0\u1085 \u1072 \u1081 \u1076 \u1080  \u1087 \u1072 \u1088 \u1099  \u1087 \u1086 \u1093 \u1086 \u1078 \u1080 \u1093  \u1085 \u1072 \u1074 \u1099 \u1082 \u1086 \u1074  \u1080 \u1079  \u1089 \u1087 \u1080 \u1089 \u1082 \u1072  \u1080  \u1076 \u1072 \u1083 \u1077 \u1077  \u1089 \u1087 \u1080 \u1089 \u1086 \u1082 \
+		\uc0\u1089 \u1087 \u1080 \u1089 \u1086 \u1082  \u1073 \u1099 \u1083  \u1089 \u1092 \u1086 \u1088 \u1084 \u1080 \u1088 \u1074 \u1086 \u1072 \u1085  \u1082 \u1072 \u1082 \
+		
+\f1\fs24 \cf0 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 df = pd.read_csv(\cf6 \strokec6 '../data/features/skills.csv'\cf0 \strokec5 , encoding=\cf6 \strokec6 'utf-8'\cf0 \strokec5 )\cb1 \
+\ls1\ilvl0
+\f0\fs32 \cf2 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		
+\f1\fs24 \cf0 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 n = \cf7 \cb4 \strokec7 20\cf0 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\ls1\ilvl0\cf0 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 skills = df.sort_values(\cf6 \strokec6 'frequency'\cf0 \strokec5 ,ascending = \cf8 \strokec8 False\cf0 \strokec5 ).groupby(\cf6 \strokec6 'popular_profession_id'\cf0 \strokec5 ).head(n)[\cf6 \strokec6 'skill_name'\cf0 \strokec5 ]\cb1 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 \
+\ls1\ilvl0\cf8 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 with\cf0 \strokec5  open(\cf6 \strokec6 '../data/features/mini-skills.txt'\cf0 \strokec5 , \cf6 \strokec6 'w'\cf0 \strokec5 ) \cf8 \strokec8 as\cf0 \strokec5  f:\cb1 \
+\ls1\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5     f.writelines([x + \cf6 \strokec6 '\\n'\cf0 \strokec5  \cf8 \strokec8 for\cf0 \strokec5  x \cf8 \strokec8 in\cf0 \strokec5  sorted(skills)])\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f0\fs32 \cf2 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\
+		\
+		\
+		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 1\uc0\u1057 : \u1055 \u1088 \u1077 \u1076 \u1087 \u1088 \u1080 \u1103 \u1090 \u1080 \u1077  8 - \u1041 \u1091 \u1093 \u1075 \u1072 \u1083 \u1090 \u1077 \u1088 \u1080 \u1103 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 A/B \uc0\u1090 \u1077 \u1089 \u1090 \u1099  - \u1052 \u1072 \u1088 \u1082 \u1077 \u1090 \u1080 \u1085 \u1075 \u1086 \u1074 \u1099 \u1077  \u1080 \u1089 \u1089 \u1083 \u1077 \u1076 \u1086 \u1074 \u1072 \u1085 \u1080 \u1103 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 API - REST\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 AWS - Azure\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Agile - Scrum\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Airflow - Apache NiFi\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Amplitude - Google Analytics\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Ansible - Docker\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Atlassian Confluence - Atlassian Jira\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 B2B \uc0\u1055 \u1088 \u1086 \u1076 \u1072 \u1078 \u1080  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1076 \u1072 \u1078 \u1072 \u1084 \u1080 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 BI - Power BI\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 BPMN - \uc0\u1052 \u1086 \u1076 \u1077 \u1083 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  \u1073 \u1080 \u1079 \u1085 \u1077 \u1089  \u1087 \u1088 \u1086 \u1094 \u1077 \u1089 \u1089 \u1086 \u1074 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Bash - Shell-\uc0\u1089 \u1082 \u1088 \u1080 \u1087 \u1090 \u1080 \u1085 \u1075 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 C# - Java\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 C++ - Python\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 CI/CD - DevOps\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 CRM - \uc0\u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1086 \u1090 \u1085 \u1086 \u1096 \u1077 \u1085 \u1080 \u1103 \u1084 \u1080  \u1089  \u1082 \u1083 \u1080 \u1077 \u1085 \u1090 \u1072 \u1084 \u1080 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Cassandra - MongoDB\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Catboost - XGBoost\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ClickHouse - PostgreSQL\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Computer Vision - Deep Learning\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Confluence - Jira\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 DAX - MDX\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 DSP - NLP\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 DWH - \uc0\u1061 \u1088 \u1072 \u1085 \u1080 \u1083 \u1080 \u1097 \u1077  \u1076 \u1072 \u1085 \u1085 \u1099 \u1093 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Data Governance - Data Science\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Data Mining - Data Science\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Data Vault - Data lake\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Deep Learning - Machine Learning\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 DevOps - Kubernetes\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Digital Marketing - \uc0\u1052 \u1072 \u1088 \u1082 \u1077 \u1090 \u1080 \u1085 \u1075 \u1086 \u1074 \u1099 \u1077  \u1080 \u1089 \u1089 \u1083 \u1077 \u1076 \u1086 \u1074 \u1072 \u1085 \u1080 \u1103 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Django - Flask\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Docker - Kubernetes\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ETL - Apache NiFi\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Elasticsearch - Kibana\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 FastAPI - Flask\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 GPT - Transformer\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Git - Gitlab\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Gitlab - Jenkins\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Go - Python\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Google Analytics - Google Data Studio\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Google \uc0\u1090 \u1072 \u1073 \u1083 \u1080 \u1094 \u1099  - MS Excel\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Grafana - Kibana\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Greenplum - Vertica\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Hadoop - Spark\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Helm - Kubernetes\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Hive - Hadoop\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 IDEF - UML\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 IT - \uc0\u1048 \u1085 \u1092 \u1086 \u1088 \u1084 \u1072 \u1094 \u1080 \u1086 \u1085 \u1085 \u1099 \u1077  \u1090 \u1077 \u1093 \u1085 \u1086 \u1083 \u1086 \u1075 \u1080 \u1080 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Internet - \uc0\u1042 \u1077 \u1073 -\u1072 \u1085 \u1072 \u1083 \u1080 \u1090 \u1080 \u1082 \u1072 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 JSON API - REST\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Java - Python\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 JavaScript - Python\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Jenkins - Gitlab\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Jira - Confluence\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Jupyter Notebook - PySpark\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Kafka - Apache NiFi\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Kanban - Agile\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Keras - PyTorch\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Kubernetes - Docker\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Linux - Unix\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MATLAB - Python\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MDX - DAX\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MLOps - DevOps\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MLflow - PyTorch\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MPStats - Power BI\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MS Access - MS SQL\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MS Excel - Google \uc0\u1090 \u1072 \u1073 \u1083 \u1080 \u1094 \u1099 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MS Office - \uc0\u1054 \u1092 \u1080 \u1089 \u1085 \u1099 \u1077  \u1087 \u1088 \u1086 \u1075 \u1088 \u1072 \u1084 \u1084 \u1099 \cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MS PowerPoint - MS Word\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MS SQL - PostgreSQL\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MS Visio - UML\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MS Word - MS PowerPoint\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Machine Learning - Deep Learning\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Matplotlib - PySpark\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MongoDB - Cassandra\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 MySQL - PostgreSQL\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 NLP - Deep Learning\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 NiFi - Apache NiFi\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 NoSQL - MongoDB\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Numpy - PyTorch\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 OLAP - DWH\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ORACLE - PostgreSQL\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 OpenCV - Computer\cb1 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls2\ilvl0\cf2 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 OpenCV - Computer Vision\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Oracle BI - Power BI\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Oracle Pl/SQL - SQL\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 PL/SQL - SQL\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Pandas - PySpark\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 PostgreSQL - MySQL\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Power BI - Tableau\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Power Pivot - Power Query\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Power Query - Power BI\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Presto - Hive\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Prometheus - Grafana\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 PySpark - Spark\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 PyTorch - TensorFlow\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Python - JavaScript\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Qlik Sense - QlikSense\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 QlikSense - Power BI\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 R - Python\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 REST - API\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 RecSys - Recommendation Systems\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Redis - NoSQL\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Reporting - Power BI\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Research - \uc0\u1040 \u1085 \u1072 \u1083 \u1080 \u1090 \u1080 \u1095 \u1077 \u1089 \u1082 \u1080 \u1077  \u1080 \u1089 \u1089 \u1083 \u1077 \u1076 \u1086 \u1074 \u1072 \u1085 \u1080 \u1103 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 SAP - ERP\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 SCALA - Java\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 SOAP - API\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 SQL - PL/SQL\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 SSAS - SSRS\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 SSRS - SSAS\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 SWOT \uc0\u1072 \u1085 \u1072 \u1083 \u1080 \u1079  - \u1041 \u1080 \u1079 \u1085 \u1077 \u1089 -\u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Sas - R\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Scikit-learn - Machine Learning\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Scrum - Agile\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Selenium - Test Automation\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Spark - PySpark\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Tableau - Power BI\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Tensorflow - PyTorch\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Teradata - Oracle\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Transformer - GPT\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 UML - IDEF\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Unit-\uc0\u1101 \u1082 \u1086 \u1085 \u1086 \u1084 \u1080 \u1082 \u1072  - \u1060 \u1072 \u1082 \u1090 \u1086 \u1088 \u1085 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Unix - Linux\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Use Case Analysis - \uc0\u1041 \u1080 \u1079 \u1085 \u1077 \u1089 -\u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 User Story - Agile\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 VBA - \uc0\u1052 \u1072 \u1082 \u1088 \u1086 \u1089 \u1099 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Vertica - Greenplum\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 WEB \uc0\u1072 \u1085 \u1072 \u1083 \u1080 \u1090 \u1080 \u1082 \u1072  - \u1042 \u1077 \u1073 -\u1072 \u1085 \u1072 \u1083 \u1080 \u1090 \u1080 \u1082 \u1072 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 WMS - \uc0\u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1089 \u1082 \u1083 \u1072 \u1076 \u1086 \u1084 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 XML - JSON API\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Zabbix - \uc0\u1052 \u1086 \u1085 \u1080 \u1090 \u1086 \u1088 \u1080 \u1085 \u1075 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 k8s - Kubernetes\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 xgboost - Catboost\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1040 \u1074 \u1090 \u1086 \u1084 \u1072 \u1090 \u1080 \u1079 \u1072 \u1094 \u1080 \u1103  \u1087 \u1088 \u1086 \u1094 \u1077 \u1089 \u1089 \u1086 \u1074  - \u1056 \u1072 \u1079 \u1088 \u1072 \u1073 \u1086 \u1090 \u1082 \u1072  \u1055 \u1054 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1040 \u1076 \u1084 \u1080 \u1085 \u1080 \u1089 \u1090 \u1088 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1089 \u1080 \u1089 \u1090 \u1077 \u1084 \u1072 \u1084 \u1080 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1040 \u1083 \u1075 \u1086 \u1088 \u1080 \u1090 \u1084 \u1099  - \u1052 \u1072 \u1090 \u1077 \u1084 \u1072 \u1090 \u1080 \u1095 \u1077 \u1089 \u1082 \u1080 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1040 \u1085 \u1072 \u1083 \u1080 \u1079  \u1072 \u1089 \u1089 \u1086 \u1088 \u1090 \u1080 \u1084 \u1077 \u1085 \u1090 \u1085 \u1086 \u1081  \u1083 \u1080 \u1085 \u1077 \u1081 \u1082 \u1080  - \u1040 \u1085 \u1072 \u1083 \u1080 \u1079  \u1088 \u1099 \u1085 \u1082 \u1072 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1040 \u1085 \u1072 \u1083 \u1080 \u1079  \u1074 \u1088 \u1077 \u1084 \u1077 \u1085 \u1085 \u1099 \u1093  \u1088 \u1103 \u1076 \u1086 \u1074  - \u1055 \u1088 \u1086 \u1075 \u1085 \u1086 \u1079 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1040 \u1085 \u1072 \u1083 \u1080 \u1079  \u1076 \u1072 \u1085 \u1085 \u1099 \u1093  - Data Mining\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1040 \u1085 \u1072 \u1083 \u1080 \u1079  \u1080 \u1085 \u1074 \u1077 \u1089 \u1090 \u1080 \u1094 \u1080 \u1086 \u1085 \u1085 \u1099 \u1093  \u1087 \u1088 \u1086 \u1077 \u1082 \u1090 \u1086 \u1074  - \u1060 \u1080 \u1085 \u1072 \u1085 \u1089 \u1086 \u1074 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1040 \u1085 \u1072 \u1083 \u1080 \u1079  \u1087 \u1086 \u1074 \u1077 \u1076 \u1077 \u1085 \u1080 \u1103  \u1087 \u1086 \u1083 \u1100 \u1079 \u1086 \u1074 \u1072 \u1090 \u1077 \u1083 \u1077 \u1081  - \u1052 \u1072 \u1088 \u1082 \u1077 \u1090 \u1080 \u1085 \u1075 \u1086 \u1074 \u1099 \u1077  \u1080 \u1089 \u1089 \u1083 \u1077 \u1076 \u1086 \u1074 \u1072 \u1085 \u1080 \u1103 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1040 \u1085 \u1072 \u1083 \u1080 \u1090 \u1080 \u1095 \u1077 \u1089 \u1082 \u1080 \u1077  \u1080 \u1089 \u1089 \u1083 \u1077 \u1076 \u1086 \u1074 \u1072 \u1085 \u1080 \u1103  - Research\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1040 \u1085 \u1072 \u1083 \u1080 \u1090 \u1080 \u1095 \u1077 \u1089 \u1082 \u1086 \u1077  \u1084 \u1099 \u1096 \u1083 \u1077 \u1085 \u1080 \u1077  - \u1041 \u1080 \u1079 \u1085 \u1077 \u1089 -\u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1040 \u1085 \u1075 \u1083 \u1080 \u1081 \u1089 \u1082 \u1080 \u1081  - \u1056 \u1091 \u1089 \u1089 \u1082 \u1080 \u1081 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1041 \u1072 \u1079 \u1099  \u1076 \u1072 \u1085 \u1085 \u1099 \u1093  - \u1057 \u1080 \u1089 \u1090 \u1077 \u1084 \u1085 \u1072 \u1103  \u1080 \u1085 \u1090 \u1077 \u1075 \u1088 \u1072 \u1094 \u1080 \u1103 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1041 \u1080 \u1079 \u1085 \u1077 \u1089 -\u1072 \u1085 \u1072 \u1083 \u1080 \u1079  - \u1040 \u1085 \u1072 \u1083 \u1080 \u1079  \u1076 \u1072 \u1085 \u1085 \u1099 \u1093 \cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1041 \u1080 \u1090 \u1088 \u1080 \u1082 \u1089 24 - CRM\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1041 \u1102 \u1076 \u1078 \u1077 \u1090 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  - \u1060 \u1080 \u1085 \u1072 \u1085 \u1089 \u1086 \u1074 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\pard\tx566\pardeftab720\partightenfactor0
+\cf2 \strokec2 \
+\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls3\ilvl0\cf2 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1042 \u1055 \u1056  - \u1055 \u1086 \u1076 \u1075 \u1086 \u1090 \u1086 \u1074 \u1082 \u1072  \u1087 \u1088 \u1077 \u1079 \u1077 \u1085 \u1090 \u1072 \u1094 \u1080 \u1081 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1042 \u1077 \u1073 -\u1072 \u1085 \u1072 \u1083 \u1080 \u1090 \u1080 \u1082 \u1072  - Google Analytics\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1042 \u1080 \u1079 \u1091 \u1072 \u1083 \u1080 \u1079 \u1072 \u1094 \u1080 \u1103  \u1076 \u1072 \u1085 \u1085 \u1099 \u1093  - Tableau\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1042 \u1085 \u1080 \u1084 \u1072 \u1090 \u1077 \u1083 \u1100 \u1085 \u1086 \u1089 \u1090 \u1100  - \u1057 \u1080 \u1089 \u1090 \u1077 \u1084 \u1085 \u1086 \u1089 \u1090 \u1100 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1042 \u1099 \u1089 \u1086 \u1082 \u1072 \u1103  \u1089 \u1082 \u1086 \u1088 \u1086 \u1089 \u1090 \u1100  \u1087 \u1077 \u1095 \u1072 \u1090 \u1080  - \u1058 \u1077 \u1093 \u1085 \u1080 \u1095 \u1077 \u1089 \u1082 \u1072 \u1103  \u1076 \u1086 \u1082 \u1091 \u1084 \u1077 \u1085 \u1090 \u1072 \u1094 \u1080 \u1103 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1042 \u1099 \u1089 \u1096 \u1077 \u1077  \u1086 \u1073 \u1088 \u1072 \u1079 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  - \u1059 \u1095 \u1077 \u1085 \u1072 \u1103  \u1089 \u1090 \u1077 \u1087 \u1077 \u1085 \u1100 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1043 \u1080 \u1073 \u1082 \u1086 \u1089 \u1090 \u1100  - \u1043 \u1080 \u1073 \u1082 \u1086 \u1089 \u1090 \u1100  \u1084 \u1099 \u1096 \u1083 \u1077 \u1085 \u1080 \u1103 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1043 \u1088 \u1072 \u1084 \u1086 \u1090 \u1085 \u1072 \u1103  \u1088 \u1077 \u1095 \u1100  - \u1050 \u1086 \u1084 \u1084 \u1091 \u1085 \u1080 \u1082 \u1072 \u1094 \u1080 \u1086 \u1085 \u1085 \u1099 \u1077  \u1085 \u1072 \u1074 \u1099 \u1082 \u1080 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1044 \u1077 \u1083 \u1086 \u1074 \u1072 \u1103  \u1082 \u1086 \u1084 \u1084 \u1091 \u1085 \u1080 \u1082 \u1072 \u1094 \u1080 \u1103  - \u1056 \u1072 \u1073 \u1086 \u1090 \u1072  \u1074  \u1082 \u1086 \u1084 \u1072 \u1085 \u1076 \u1077 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1044 \u1086 \u1089 \u1090 \u1080 \u1078 \u1077 \u1085 \u1080 \u1077  \u1094 \u1077 \u1083 \u1077 \u1081  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1074 \u1088 \u1077 \u1084 \u1077 \u1085 \u1077 \u1084 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1046 \u1077 \u1083 \u1072 \u1085 \u1080 \u1077  \u1088 \u1072 \u1073 \u1086 \u1090 \u1072 \u1090 \u1100  \u1080  \u1088 \u1072 \u1079 \u1074 \u1080 \u1074 \u1072 \u1090 \u1100 \u1089 \u1103  - \u1059 \u1089 \u1080 \u1076 \u1095 \u1080 \u1074 \u1086 \u1089 \u1090 \u1100 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1047 \u1072 \u1080 \u1085 \u1090 \u1077 \u1088 \u1077 \u1089 \u1086 \u1074 \u1072 \u1085 \u1085 \u1086 \u1089 \u1090 \u1100  - \u1069 \u1085 \u1090 \u1091 \u1079 \u1080 \u1072 \u1079 \u1084 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1048 \u1085 \u1092 \u1086 \u1088 \u1084 \u1072 \u1094 \u1080 \u1086 \u1085 \u1085 \u1072 \u1103  \u1073 \u1077 \u1079 \u1086 \u1087 \u1072 \u1089 \u1085 \u1086 \u1089 \u1090 \u1100  - \u1041 \u1077 \u1079 \u1086 \u1087 \u1072 \u1089 \u1085 \u1086 \u1089 \u1090 \u1100  \u1076 \u1072 \u1085 \u1085 \u1099 \u1093 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1048 \u1085 \u1092 \u1086 \u1088 \u1084 \u1072 \u1094 \u1080 \u1086 \u1085 \u1085 \u1099 \u1077  \u1090 \u1077 \u1093 \u1085 \u1086 \u1083 \u1086 \u1075 \u1080 \u1080  - IT\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1048 \u1089 \u1082 \u1091 \u1089 \u1089 \u1090 \u1074 \u1077 \u1085 \u1085 \u1099 \u1081  \u1080 \u1085 \u1090 \u1077 \u1083 \u1083 \u1077 \u1082 \u1090  - \u1052 \u1072 \u1096 \u1080 \u1085 \u1085 \u1086 \u1077  \u1086 \u1073 \u1091 \u1095 \u1077 \u1085 \u1080 \u1077 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1050 \u1061 \u1044  - \u1060 \u1080 \u1085 \u1072 \u1085 \u1089 \u1086 \u1074 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1050 \u1086 \u1085 \u1082 \u1091 \u1088 \u1077 \u1085 \u1090 \u1085 \u1072 \u1103  \u1072 \u1085 \u1072 \u1083 \u1080 \u1090 \u1080 \u1082 \u1072  - \u1052 \u1072 \u1088 \u1082 \u1077 \u1090 \u1080 \u1085 \u1075 \u1086 \u1074 \u1099 \u1077  \u1080 \u1089 \u1089 \u1083 \u1077 \u1076 \u1086 \u1074 \u1072 \u1085 \u1080 \u1103 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1050 \u1086 \u1085 \u1089 \u1072 \u1083 \u1090 \u1080 \u1085 \u1075  - \u1041 \u1080 \u1079 \u1085 \u1077 \u1089 -\u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1050 \u1086 \u1085 \u1089 \u1091 \u1083 \u1100 \u1090 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  \u1082 \u1083 \u1080 \u1077 \u1085 \u1090 \u1086 \u1074  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1086 \u1090 \u1085 \u1086 \u1096 \u1077 \u1085 \u1080 \u1103 \u1084 \u1080  \u1089  \u1082 \u1083 \u1080 \u1077 \u1085 \u1090 \u1072 \u1084 \u1080 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1051 \u1080 \u1085 \u1077 \u1081 \u1085 \u1072 \u1103  \u1072 \u1083 \u1075 \u1077 \u1073 \u1088 \u1072  - \u1052 \u1072 \u1090 \u1077 \u1084 \u1072 \u1090 \u1080 \u1095 \u1077 \u1089 \u1082 \u1080 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1052 \u1072 \u1082 \u1088 \u1086 \u1089 \u1099  - VBA\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1052 \u1072 \u1088 \u1082 \u1077 \u1090 \u1080 \u1085 \u1075 \u1086 \u1074 \u1099 \u1077  \u1080 \u1089 \u1089 \u1083 \u1077 \u1076 \u1086 \u1074 \u1072 \u1085 \u1080 \u1103  - \u1040 \u1085 \u1072 \u1083 \u1080 \u1079  \u1088 \u1099 \u1085 \u1082 \u1072 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1052 \u1072 \u1090 \u1077 \u1084 \u1072 \u1090 \u1080 \u1095 \u1077 \u1089 \u1082 \u1072 \u1103  \u1089 \u1090 \u1072 \u1090 \u1080 \u1089 \u1090 \u1080 \u1082 \u1072  - \u1060 \u1080 \u1085 \u1072 \u1085 \u1089 \u1086 \u1074 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1052 \u1072 \u1090 \u1077 \u1084 \u1072 \u1090 \u1080 \u1095 \u1077 \u1089 \u1082 \u1080 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079  - \u1040 \u1083 \u1075 \u1086 \u1088 \u1080 \u1090 \u1084 \u1099 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1052 \u1086 \u1076 \u1077 \u1083 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  - \u1052 \u1086 \u1076 \u1077 \u1083 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  \u1073 \u1080 \u1079 \u1085 \u1077 \u1089 -\u1087 \u1088 \u1086 \u1094 \u1077 \u1089 \u1089 \u1086 \u1074 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1052 \u1086 \u1076 \u1077 \u1083 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  \u1073 \u1080 \u1079 \u1085 \u1077 \u1089 -\u1087 \u1088 \u1086 \u1094 \u1077 \u1089 \u1089 \u1086 \u1074  - \u1041 \u1080 \u1079 \u1085 \u1077 \u1089 -\u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1053 \u1072 \u1074 \u1099 \u1082 \u1080  \u1087 \u1088 \u1077 \u1079 \u1077 \u1085 \u1090 \u1072 \u1094 \u1080 \u1080  - \u1055 \u1091 \u1073 \u1083 \u1080 \u1095 \u1085 \u1099 \u1077  \u1074 \u1099 \u1089 \u1090 \u1091 \u1087 \u1083 \u1077 \u1085 \u1080 \u1103 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1053 \u1077 \u1081 \u1088 \u1086 \u1085 \u1085 \u1099 \u1077  \u1089 \u1077 \u1090 \u1080  - Deep Learning\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1054 \u1054 \u1055  - Python\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1054 \u1073 \u1091 \u1095 \u1077 \u1085 \u1080 \u1077  \u1080  \u1088 \u1072 \u1079 \u1074 \u1080 \u1090 \u1080 \u1077  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1082 \u1086 \u1084 \u1072 \u1085 \u1076 \u1086 \u1081 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1054 \u1087 \u1077 \u1088 \u1072 \u1090 \u1080 \u1074 \u1085 \u1099 \u1081  \u1087 \u1086 \u1080 \u1089 \u1082  \u1080 \u1085 \u1092 \u1086 \u1088 \u1084 \u1072 \u1094 \u1080 \u1080  \u1074  \u1089 \u1077 \u1090 \u1080  \u1048 \u1085 \u1090 \u1077 \u1088 \u1085 \u1077 \u1090  - \u1055 \u1086 \u1080 \u1089 \u1082  \u1080 \u1085 \u1092 \u1086 \u1088 \u1084 \u1072 \u1094 \u1080 \u1080  \u1074  \u1080 \u1085 \u1090 \u1077 \u1088 \u1085 \u1077 \u1090 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1054 \u1087 \u1090 \u1080 \u1084 \u1080 \u1079 \u1072 \u1094 \u1080 \u1103  \u1079 \u1072 \u1087 \u1088 \u1086 \u1089 \u1086 \u1074  - SQL\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1054 \u1088 \u1075 \u1072 \u1085 \u1080 \u1079 \u1072 \u1090 \u1086 \u1088 \u1089 \u1082 \u1080 \u1077  \u1085 \u1072 \u1074 \u1099 \u1082 \u1080  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1077 \u1082 \u1090 \u1072 \u1084 \u1080 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1054 \u1088 \u1080 \u1077 \u1085 \u1090 \u1072 \u1094 \u1080 \u1103  \u1085 \u1072  \u1082 \u1083 \u1080 \u1077 \u1085 \u1090 \u1072  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1086 \u1090 \u1085 \u1086 \u1096 \u1077 \u1085 \u1080 \u1103 \u1084 \u1080  \u1089  \u1082 \u1083 \u1080 \u1077 \u1085 \u1090 \u1072 \u1084 \u1080 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1054 \u1088 \u1080 \u1077 \u1085 \u1090 \u1072 \u1094 \u1080 \u1103  \u1085 \u1072  \u1088 \u1077 \u1079 \u1091 \u1083 \u1100 \u1090 \u1072 \u1090  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1077 \u1082 \u1090 \u1072 \u1084 \u1080 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1054 \u1090 \u1095 \u1077 \u1090 \u1085 \u1086 \u1089 \u1090 \u1100  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1095 \u1077 \u1089 \u1082 \u1072 \u1103  \u1086 \u1090 \u1095 \u1077 \u1090 \u1085 \u1086 \u1089 \u1090 \u1100 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1054 \u1092 \u1080 \u1089 \u1085 \u1099 \u1077  \u1087 \u1088 \u1086 \u1075 \u1088 \u1072 \u1084 \u1084 \u1099  - MS Office\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1054 \u1094 \u1077 \u1085 \u1082 \u1072  \u1088 \u1080 \u1089 \u1082 \u1086 \u1074  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1088 \u1080 \u1089 \u1082 \u1072 \u1084 \u1080 \cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1072 \u1088 \u1089 \u1080 \u1085 \u1075  - \u1057 \u1073 \u1086 \u1088  \u1080 \cb1 \
+\pard\tx566\pardeftab720\partightenfactor0
+\cf2 \strokec2 \
+\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls4\ilvl0\cf2 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1072 \u1088 \u1089 \u1080 \u1085 \u1075  - \u1040 \u1074 \u1090 \u1086 \u1084 \u1072 \u1090 \u1080 \u1079 \u1072 \u1094 \u1080 \u1103  \u1087 \u1088 \u1086 \u1094 \u1077 \u1089 \u1089 \u1086 \u1074 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1083 \u1072 \u1085 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  \u1080  \u1086 \u1088 \u1075 \u1072 \u1085 \u1080 \u1079 \u1072 \u1094 \u1080 \u1103  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1077 \u1082 \u1090 \u1072 \u1084 \u1080 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1083 \u1072 \u1085 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1076 \u1072 \u1078  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1076 \u1072 \u1078 \u1072 \u1084 \u1080 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1086 \u1076 \u1075 \u1086 \u1090 \u1086 \u1074 \u1082 \u1072  \u1087 \u1088 \u1077 \u1079 \u1077 \u1085 \u1090 \u1072 \u1094 \u1080 \u1081  - \u1055 \u1088 \u1086 \u1076 \u1072 \u1078 \u1080 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1086 \u1080 \u1089 \u1082  \u1080 \u1085 \u1092 \u1086 \u1088 \u1084 \u1072 \u1094 \u1080 \u1080  \u1074  \u1080 \u1085 \u1090 \u1077 \u1088 \u1085 \u1077 \u1090  - \u1054 \u1087 \u1077 \u1088 \u1072 \u1090 \u1080 \u1074 \u1085 \u1099 \u1081  \u1087 \u1086 \u1080 \u1089 \u1082  \u1080 \u1085 \u1092 \u1086 \u1088 \u1084 \u1072 \u1094 \u1080 \u1080  \u1074  \u1089 \u1077 \u1090 \u1080  \u1048 \u1085 \u1090 \u1077 \u1088 \u1085 \u1077 \u1090 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1086 \u1083 \u1100 \u1079 \u1086 \u1074 \u1072 \u1090 \u1077 \u1083 \u1100  \u1055 \u1050  - \u1054 \u1092 \u1080 \u1089 \u1085 \u1099 \u1077  \u1087 \u1088 \u1086 \u1075 \u1088 \u1072 \u1084 \u1084 \u1099 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1086 \u1088 \u1090 \u1092 \u1077 \u1083 \u1100 \u1085 \u1099 \u1077  \u1088 \u1080 \u1089 \u1082 \u1080  - \u1060 \u1080 \u1085 \u1072 \u1085 \u1089 \u1086 \u1074 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1086 \u1089 \u1090 \u1072 \u1085 \u1086 \u1074 \u1082 \u1072  \u1079 \u1072 \u1076 \u1072 \u1095  \u1088 \u1072 \u1079 \u1088 \u1072 \u1073 \u1086 \u1090 \u1095 \u1080 \u1082 \u1072 \u1084  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1077 \u1082 \u1090 \u1072 \u1084 \u1080 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1088 \u1086 \u1074 \u1077 \u1076 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1077 \u1079 \u1077 \u1085 \u1090 \u1072 \u1094 \u1080 \u1081  - \u1055 \u1091 \u1073 \u1083 \u1080 \u1095 \u1085 \u1099 \u1077  \u1074 \u1099 \u1089 \u1090 \u1091 \u1087 \u1083 \u1077 \u1085 \u1080 \u1103 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1088 \u1086 \u1075 \u1085 \u1086 \u1079 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  - \u1055 \u1088 \u1086 \u1075 \u1085 \u1086 \u1079 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077  \u1074 \u1088 \u1077 \u1084 \u1077 \u1085 \u1085 \u1099 \u1093  \u1088 \u1103 \u1076 \u1086 \u1074 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1088 \u1086 \u1076 \u1091 \u1082 \u1090 \u1086 \u1074 \u1072 \u1103  \u1072 \u1085 \u1072 \u1083 \u1080 \u1090 \u1080 \u1082 \u1072  - \u1055 \u1088 \u1086 \u1076 \u1091 \u1082 \u1090 \u1086 \u1074 \u1099 \u1081  \u1084 \u1077 \u1085 \u1077 \u1076 \u1078 \u1084 \u1077 \u1085 \u1090 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1088 \u1086 \u1077 \u1082 \u1090 \u1085 \u1072 \u1103  \u1076 \u1077 \u1103 \u1090 \u1077 \u1083 \u1100 \u1085 \u1086 \u1089 \u1090 \u1100  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1077 \u1082 \u1090 \u1072 \u1084 \u1080 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1055 \u1091 \u1073 \u1083 \u1080 \u1095 \u1085 \u1099 \u1077  \u1074 \u1099 \u1089 \u1090 \u1091 \u1087 \u1083 \u1077 \u1085 \u1080 \u1103  - \u1055 \u1088 \u1077 \u1079 \u1077 \u1085 \u1090 \u1072 \u1094 \u1080 \u1086 \u1085 \u1085 \u1099 \u1077  \u1085 \u1072 \u1074 \u1099 \u1082 \u1080 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1072 \u1073 \u1086 \u1090 \u1072  \u1074  \u1082 \u1086 \u1084 \u1072 \u1085 \u1076 \u1077  - \u1050 \u1086 \u1083 \u1083 \u1072 \u1073 \u1086 \u1088 \u1072 \u1094 \u1080 \u1103 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1072 \u1073 \u1086 \u1090 \u1072  \u1074  \u1091 \u1089 \u1083 \u1086 \u1074 \u1080 \u1103 \u1093  \u1084 \u1085 \u1086 \u1075 \u1086 \u1079 \u1072 \u1076 \u1072 \u1095 \u1085 \u1086 \u1089 \u1090 \u1080  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1074 \u1088 \u1077 \u1084 \u1077 \u1085 \u1077 \u1084 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1072 \u1073 \u1086 \u1090 \u1072  \u1089  \u1073 \u1072 \u1079 \u1072 \u1084 \u1080  \u1076 \u1072 \u1085 \u1085 \u1099 \u1093  - SQL\cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1072 \u1073 \u1086 \u1090 \u1072  \u1089  \u1073 \u1086 \u1083 \u1100 \u1096 \u1080 \u1084  \u1086 \u1073 \u1098 \u1077 \u1084 \u1086 \u1084  \u1080 \u1085 \u1092 \u1086 \u1088 \u1084 \u1072 \u1094 \u1080 \u1080  - Data Mining\cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1072 \u1073 \u1086 \u1090 \u1072  \u1089  \u1089 \u1080 \u1089 \u1090 \u1077 \u1084 \u1072 \u1084 \u1080  \u1072 \u1085 \u1072 \u1083 \u1080 \u1090 \u1080 \u1082 \u1080  - BI\cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1072 \u1073 \u1086 \u1090 \u1072  \u1089 \u1086  \u1057 \u1052 \u1048  - PR\cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1072 \u1079 \u1074 \u1080 \u1090 \u1080 \u1077  \u1087 \u1088 \u1086 \u1076 \u1072 \u1078  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1076 \u1072 \u1078 \u1072 \u1084 \u1080 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1072 \u1079 \u1088 \u1072 \u1073 \u1086 \u1090 \u1082 \u1072  \u1055 \u1054  - \u1055 \u1088 \u1086 \u1075 \u1088 \u1072 \u1084 \u1084 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1072 \u1079 \u1088 \u1072 \u1073 \u1086 \u1090 \u1082 \u1072  \u1080 \u1085 \u1089 \u1090 \u1088 \u1091 \u1082 \u1094 \u1080 \u1081  - \u1058 \u1077 \u1093 \u1085 \u1080 \u1095 \u1077 \u1089 \u1082 \u1072 \u1103  \u1076 \u1086 \u1082 \u1091 \u1084 \u1077 \u1085 \u1090 \u1072 \u1094 \u1080 \u1103 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1072 \u1079 \u1088 \u1072 \u1073 \u1086 \u1090 \u1082 \u1072  \u1087 \u1086 \u1080 \u1089 \u1082 \u1086 \u1074 \u1099 \u1093  \u1090 \u1077 \u1093 \u1085 \u1086 \u1083 \u1086 \u1075 \u1080 \u1081  - \u1055 \u1086 \u1080 \u1089 \u1082 \u1086 \u1074 \u1072 \u1103  \u1086 \u1087 \u1090 \u1080 \u1084 \u1080 \u1079 \u1072 \u1094 \u1080 \u1103 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1072 \u1079 \u1088 \u1072 \u1073 \u1086 \u1090 \u1082 \u1072  \u1090 \u1077 \u1093 \u1085 \u1080 \u1095 \u1077 \u1089 \u1082 \u1080 \u1093  \u1079 \u1072 \u1076 \u1072 \u1085 \u1080 \u1081  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1077 \u1082 \u1090 \u1072 \u1084 \u1080 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1056 \u1091 \u1089 \u1089 \u1082 \u1080 \u1081  - \u1040 \u1085 \u1075 \u1083 \u1080 \u1081 \u1089 \u1082 \u1080 \u1081 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1057 \u1073 \u1086 \u1088  \u1080  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079  \u1080 \u1085 \u1092 \u1086 \u1088 \u1084 \u1072 \u1094 \u1080 \u1080  - \u1052 \u1072 \u1088 \u1082 \u1077 \u1090 \u1080 \u1085 \u1075 \u1086 \u1074 \u1099 \u1077  \u1080 \u1089 \u1089 \u1083 \u1077 \u1076 \u1086 \u1074 \u1072 \u1085 \u1080 \u1103 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1057 \u1074 \u1086 \u1076 \u1085 \u1099 \u1077  \u1090 \u1072 \u1073 \u1083 \u1080 \u1094 \u1099  - \u1040 \u1085 \u1072 \u1083 \u1080 \u1079  \u1076 \u1072 \u1085 \u1085 \u1099 \u1093 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1057 \u1080 \u1089 \u1090 \u1077 \u1084 \u1085 \u1072 \u1103  \u1080 \u1085 \u1090 \u1077 \u1075 \u1088 \u1072 \u1094 \u1080 \u1103  - \u1048 \u1085 \u1092 \u1086 \u1088 \u1084 \u1072 \u1094 \u1080 \u1086 \u1085 \u1085 \u1099 \u1077  \u1090 \u1077 \u1093 \u1085 \u1086 \u1083 \u1086 \u1075 \u1080 \u1080 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1057 \u1080 \u1089 \u1090 \u1077 \u1084 \u1085 \u1086 \u1077  \u1084 \u1099 \u1096 \u1083 \u1077 \u1085 \u1080 \u1077  - \u1057 \u1080 \u1089 \u1090 \u1077 \u1084 \u1085 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1057 \u1080 \u1089 \u1090 \u1077 \u1084 \u1085 \u1086 \u1089 \u1090 \u1100  - \u1043 \u1080 \u1073 \u1082 \u1086 \u1089 \u1090 \u1100 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1057 \u1080 \u1089 \u1090 \u1077 \u1084 \u1085 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079  - \u1041 \u1080 \u1079 \u1085 \u1077 \u1089 -\u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1058 \u1077 \u1093 \u1085 \u1080 \u1095 \u1077 \u1089 \u1082 \u1072 \u1103  \u1076 \u1086 \u1082 \u1091 \u1084 \u1077 \u1085 \u1090 \u1072 \u1094 \u1080 \u1103  - \u1058 \u1077 \u1093 \u1085 \u1080 \u1095 \u1077 \u1089 \u1082 \u1072 \u1103  \u1087 \u1086 \u1076 \u1076 \u1077 \u1088 \u1078 \u1082 \u1072 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1058 \u1077 \u1093 \u1085 \u1080 \u1095 \u1077 \u1089 \u1082 \u1072 \u1103  \u1087 \u1086 \u1076 \u1076 \u1077 \u1088 \u1078 \u1082 \u1072  - \u1059 \u1076 \u1072 \u1083 \u1077 \u1085 \u1085 \u1072 \u1103  \u1088 \u1072 \u1073 \u1086 \u1090 \u1072 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1076 \u1072 \u1083 \u1077 \u1085 \u1085 \u1072 \u1103  \u1088 \u1072 \u1073 \u1086 \u1090 \u1072  - \u1054 \u1088 \u1075 \u1072 \u1085 \u1080 \u1079 \u1072 \u1090 \u1086 \u1088 \u1089 \u1082 \u1080 \u1077  \u1085 \u1072 \u1074 \u1099 \u1082 \u1080 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1084 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1080 \u1085 \u1080 \u1084 \u1072 \u1090 \u1100  \u1088 \u1077 \u1096 \u1077 \u1085 \u1080 \u1103  - \u1040 \u1085 \u1072 \u1083 \u1080 \u1090 \u1080 \u1095 \u1077 \u1089 \u1082 \u1086 \u1077  \u1084 \u1099 \u1096 \u1083 \u1077 \u1085 \u1080 \u1077 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1074 \u1088 \u1077 \u1084 \u1077 \u1085 \u1077 \u1084  - \u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1079 \u1072 \u1076 \u1072 \u1095 \u1072 \u1084 \u1080 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1082 \u1086 \u1084 \u1072 \u1085 \u1076 \u1086 \u1081  - \u1051 \u1080 \u1076 \u1077 \u1088 \u1089 \u1090 \u1074 \u1086 \cb1 \
+\ls4\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1086 \u1090 \u1085 \u1086 \u1096 \u1077 \u1085 \u1080 \u1103 \u1084 \u1080  \u1089  \u1082 \u1083 \u1080 \cb1 \
+\pard\tx566\pardeftab720\partightenfactor0
+\cf2 \strokec2 \
+\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls5\ilvl0\cf2 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1086 \u1090 \u1085 \u1086 \u1096 \u1077 \u1085 \u1080 \u1103 \u1084 \u1080  \u1089  \u1082 \u1083 \u1080 \u1077 \u1085 \u1090 \u1072 \u1084 \u1080  - \u1050 \u1083 \u1080 \u1077 \u1085 \u1090 \u1089 \u1082 \u1080 \u1081  \u1089 \u1077 \u1088 \u1074 \u1080 \u1089 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1076 \u1072 \u1078 \u1072 \u1084 \u1080  - B2B \u1055 \u1088 \u1086 \u1076 \u1072 \u1078 \u1080 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1076 \u1091 \u1082 \u1090 \u1086 \u1084  - \u1055 \u1088 \u1086 \u1076 \u1091 \u1082 \u1090 \u1086 \u1074 \u1099 \u1081  \u1084 \u1077 \u1085 \u1077 \u1076 \u1078 \u1084 \u1077 \u1085 \u1090 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1087 \u1088 \u1086 \u1077 \u1082 \u1090 \u1072 \u1084 \u1080  - \u1052 \u1077 \u1090 \u1086 \u1076 \u1086 \u1083 \u1086 \u1075 \u1080 \u1080  \u1091 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1103  \u1087 \u1088 \u1086 \u1077 \u1082 \u1090 \u1072 \u1084 \u1080 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1080 \u1077  \u1088 \u1080 \u1089 \u1082 \u1072 \u1084 \u1080  - \u1060 \u1072 \u1082 \u1090 \u1086 \u1088 \u1085 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1087 \u1088 \u1072 \u1074 \u1083 \u1077 \u1085 \u1095 \u1077 \u1089 \u1082 \u1072 \u1103  \u1086 \u1090 \u1095 \u1077 \u1090 \u1085 \u1086 \u1089 \u1090 \u1100  - \u1060 \u1080 \u1085 \u1072 \u1085 \u1089 \u1086 \u1074 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1059 \u1089 \u1080 \u1076 \u1095 \u1080 \u1074 \u1086 \u1089 \u1090 \u1100  - \u1057 \u1090 \u1088 \u1077 \u1089 \u1089 \u1086 \u1091 \u1089 \u1090 \u1086 \u1081 \u1095 \u1080 \u1074 \u1086 \u1089 \u1090 \u1100 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1060 \u1072 \u1082 \u1090 \u1086 \u1088 \u1085 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079  - \u1060 \u1080 \u1085 \u1072 \u1085 \u1089 \u1086 \u1074 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1060 \u1080 \u1085 \u1072 \u1085 \u1089 \u1086 \u1074 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079  - \u1060 \u1080 \u1085 \u1072 \u1085 \u1089 \u1086 \u1074 \u1086 \u1077  \u1084 \u1086 \u1076 \u1077 \u1083 \u1080 \u1088 \u1086 \u1074 \u1072 \u1085 \u1080 \u1077 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1061 \u1088 \u1072 \u1085 \u1080 \u1083 \u1080 \u1097 \u1077  \u1076 \u1072 \u1085 \u1085 \u1099 \u1093  - DWH\cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1069 \u1082 \u1086 \u1085 \u1086 \u1084 \u1077 \u1090 \u1088 \u1080 \u1082 \u1072  - \u1057 \u1090 \u1072 \u1090 \u1080 \u1089 \u1090 \u1080 \u1095 \u1077 \u1089 \u1082 \u1080 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1069 \u1082 \u1086 \u1085 \u1086 \u1084 \u1080 \u1095 \u1077 \u1089 \u1082 \u1080 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079  - \u1060 \u1080 \u1085 \u1072 \u1085 \u1089 \u1086 \u1074 \u1099 \u1081  \u1072 \u1085 \u1072 \u1083 \u1080 \u1079 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1069 \u1085 \u1090 \u1091 \u1079 \u1080 \u1072 \u1079 \u1084  - \u1052 \u1086 \u1090 \u1080 \u1074 \u1072 \u1094 \u1080 \u1103 \cb1 \
+\ls5\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 		\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u1071 \u1085 \u1076 \u1077 \u1082 \u1089 .\u1044 \u1080 \u1088 \u1077 \u1082 \u1090  - \u1071 \u1085 \u1076 \u1077 \u1082 \u1089 .\u1052 \u1077 \u1090 \u1088 \u1080 \u1082 \u1072 \cb1 \
+\pard\tx566\pardeftab720\partightenfactor0
+\cf2 \strokec2 \
+\
+\
+}
