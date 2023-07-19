@@ -1,5 +1,6 @@
 outs:
-- md5: b9b9514b9f0514e9e025c3d892a2e3ef.dir
-  size: 111732128
-  nfiles: 56
+- md5: c90c86f87f420307d9aec035f01f8e79.dir
+  size: 135315253
+  nfiles: 76
   path: hh_parsed_folder
+  hash: md5
