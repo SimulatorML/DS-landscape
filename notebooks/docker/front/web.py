@@ -1,117 +1,189 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
-import plotly
+import plotly.graph_objects as go
 import pandas as pd
-
-def plot_skill_map(df: pd.DataFrame, width=1000, height=600) -> plotly.graph_objs.Figure:
-
-    color_list = [
-        '#F8A19F', '#AA0DFE', '#3283FE', '#1CBE4F', '#C4451C', '#F6222E', 
-        '#FE00FA', '#325A9B', '#FEAF16', 
-        '#90AD1C', '#2ED9FF', '#B10DA1',
-         '#909090', '#FBE426',
-        '#FA0087', '#C075A6', '#FC1CBF'
-    ]
+from typing import List
+import pickle
+import numpy as np
 
 
-    
-    # custom visualization order
-    # for better reproducability
-    prof_order = [
-        'Data Scientist', 'ML инженер', 'Computer Vision', 'NLP',
-        'Инженер данных', 'Big Data', 'Администратор баз данных', 'Аналитик данных',
-        'Аналитик', 'Бизнес-аналитик', 'Продуктовый аналитик', 'Аналитик BI',
-        'Системный аналитик' ]
+with open('/home/roman/projects/DS-landscape/data/features/matrix.pkl', 'rb') as f:
+    matrix = pickle.load(f)
 
+with open('/home/roman/projects/DS-landscape/data/features/prof_index_to_prof_name.pkl', 'rb') as f:
+    prof_index_to_prof_name = pickle.load(f)
+
+with open('/home/roman/projects/DS-landscape/data/features/skill_index_to_corrected.pkl', 'rb') as f:
+    skill_index_to_corrected = pickle.load(f)
+
+skill_df = pd.read_csv(
+    '/home/roman/projects/DS-landscape/data/features/skills.csv')
+prof_df = pd.read_csv(
+    '/home/roman/projects/DS-landscape/data/features/prof.csv')
+
+m_max = np.max(matrix, axis=0)
+m_min = np.min(matrix, axis=0)
+normalized_matrix = matrix * 100.0 / matrix.sum(axis=0)
+
+df_plot_polar = pd.DataFrame(normalized_matrix).rename(
+    columns=prof_index_to_prof_name)
+df_plot_polar['skill_id'] = skill_index_to_corrected.keys()
+df_plot_polar['Навык'] = skill_index_to_corrected.values()
+assert np.all([skill_index_to_corrected[df_plot_polar['skill_id'][i]] ==
+              df_plot_polar['Навык'][i] for i in skill_index_to_corrected.keys()])
+
+
+def plot_polar_graph(df: pd.DataFrame, prof_list: List[str], intersect_skills: bool = False, top_n: int = 30) -> go.Figure:
+    skill_set = []
+
+    for prof_name in prof_list:
+        df_copy = df[[prof_name, 'Навык']].copy()
+        prof_skill = df_copy.sort_values(by=prof_name, ascending=False)[
+            'Навык'][:top_n].values
+
+        if intersect_skills:
+            if len(skill_set) == 0:
+                skill_set = prof_skill
+            skill_set = [x for x in prof_skill if x in skill_set]
+        else:
+            skill_set = skill_set + \
+                [x for x in prof_skill if x not in skill_set]
+
+    df_copy = df[df['Навык'].isin(skill_set)]
+
+    df_copy = df_copy.sort_values(by=prof_list[0], ascending=False)
+
+    fig = go.Figure()
+
+    for _, prof_name in enumerate(prof_list):
+
+        fig.add_trace(go.Scatterpolar(
+            r=df_copy[prof_name],
+            theta=df_copy['Навык'],
+            fill='toself',
+            name=prof_name
+        ))
+
+        fig.update_layout(
+            polar=dict(
+                radialaxis=dict(
+                    visible=True
+                )
+            ),
+            showlegend=True
+        )
+
+    return fig
+
+
+def plot_skill_scatter(df: pd.DataFrame, width: int = 800, height: int = 600) -> go.Figure:
     fig = px.scatter(df, x='x', y='y',
-                    color='Профессия', hover_name='Навык', 
-                    hover_data= {'x':False, 'y':False, 'size':False, 'Профессия': False},
-                    size='size', category_orders={'Профессия': prof_order},
-                    #color_discrete_sequence=px.colors.qualitative.Plotly,
-                    color_discrete_sequence=color_list,
-                    title = None, width=width, height=height)
+                     color='Профессия', hover_name='Навык',
+                     hover_data={'x': False, 'y': False,
+                                 'size': False, 'Профессия': False},
+                     size='size', category_orders={'Профессия': profession_list},
+                     color_discrete_sequence=px.colors.qualitative.Safe,
+                     title=None, width=width, height=height)
 
-    fig.update_traces(marker=dict(opacity=0.7, line=dict(width=0.5, color='DarkSlateGrey')), 
-                  selector=dict(mode='markers'))
+    fig.update_traces(marker=dict(opacity=0.7, line=dict(width=0.5, color='DarkSlateGrey')),
+                      selector=dict(mode='markers'))
 
     fig.update_xaxes(visible=False)
     fig.update_yaxes(visible=False)
 
     return fig
 
-# def plot_prof_map(df: pd.DataFrame, width=1000, height=600) -> plotly.graph_objs.Figure:
-    
-#     fig = px.scatter(df, x='x', y='y',
-#         color='Профессия', hover_name='Навык', 
-#         hover_data= {'x':False, 'y':False, 'size':False, 'Профессия': False},
-#         title = None, width=width, height=height)
 
-#     fig.update_traces(marker=dict(size=20, line=dict(width=0.5, color='DarkSlateGrey')), 
-#                       selector=dict(mode='markers'))
+profession_list = [
+    'ML инженер', 'Инженер данных', 'Системный аналитик', 'Продуктовый аналитик',
+    'Computer Vision', 'Data Scientist', 'NLP', 'Администратор баз данных',
+    'Аналитик BI', 'Аналитик', 'Бизнес-аналитик', 'Big Data', 'Аналитик данных'
+]
 
-#     fig.update_xaxes(visible=False)
-#     fig.update_yaxes(visible=False)
+polar_fig = plot_polar_graph(
+    df_plot_polar, prof_list=profession_list, intersect_skills=True, top_n=25)
 
-#     return fig
+df_plot_scatter = pd.read_csv('data/plot_df/best.csv')
+scatter_fig = plot_skill_scatter(df_plot_scatter, width=800, height=600)
 
 app = Dash(__name__)
 
-df = pd.read_csv(f'data/plot_df/best.csv')
-fig = plot_skill_map(df, width=1200, height=750)
 
-app.layout = html.Div([
-    html.H4('Интерактивная карта навыков (можно выбрать разные режимы в выпающих списках и кликать категории в легенде)'),
-    # dcc.Dropdown(['50 новыков каждой профессии', '100 новыков каждой профессии', '200 новыков каждой профессии'], 
-    #              '100 новыков каждой профессии', id='top-dropdown'),
-    # dcc.Dropdown(['1-вый алгоритм', '2-вый алгоритм', '3-ий алгоритм'], 
-    #              '1-вый алгоритм', id='alg-dropdown'),
-    # dcc.Graph(id="scatter-plot"),
+preset_bar_style = {
+    'display': 'flex',
+    'justify-content': 'center',
+    'margin-bottom': '20px'
+}
 
-    dcc.Graph(id="scatter-plot", figure=fig),
+preset_dropdown_style = {
+    'width': '300px',
+    'margin-right': '10px'
+}
 
-])
 
+app.layout = html.Div(
+    children=[
+        html.H4('Интерактивная карта навыков (можно выбрать разные режимы в выпадающих списках и кликать категории в легенде)'),
+        html.Div(
+            id='preset-bar',
+            style=preset_bar_style,
+            children=[
+                dcc.Dropdown(
+                    id='preset-dropdown',
+                    options=[
+                        {'label': 'DS и ML', 'value': [
+                            'ML инженер', 'Data Scientist']},
+                        {'label': 'NLP и CV', 'value': [
+                            'NLP', 'Computer Vision']},
+                        {'label': 'Аналитик', 'value': ['Системный аналитик', 'Продуктовый аналитик', 'Аналитик BI',
+                                                        'Аналитик', 'Бизнес-аналитик', 'Аналитик данных']},
+                        {'label': 'Данные', 'value': [
+                            'Администратор баз данных', 'Big Data', 'Инженер данных']}
+                    ],
+                    placeholder='Выберите пресет',
+                    value=['ML инженер', 'Data Scientist'],
+                    style=preset_dropdown_style
+                ),
+                dcc.Checklist(
+                    options=[
+                        {'label': 'Круговая диаграмма', 'value': 'polar'},
+                        {'label': 'Диаграмма рассеивания', 'value': 'scatter'}
+                    ],
+                    value=['polar', 'scatter'],
+                    id='chart-checkboxes',
+                    labelStyle={'display': 'inline-block',
+                                'margin-right': '10px'}
+                )
+            ]
+        ),
+        html.Div(id='chart-container', style={'display': 'flex'})
+    ]
+)
 
 
 @app.callback(
-    Output("scatter-plot", "figure"), 
-    Input("top-dropdown", "value"),
-    Input("alg-dropdown", "value"))
-def update_bar_chart(top: str, alg: str):
-    n = 'none'
-    a = 'tnse'
-
-    if top.startswith('50 '):
-        top = 50
-    elif top.startswith('100 '):
-        top = 100
-    elif top.startswith('200 '):
-        top = 200
+    Output('chart-container', 'children'),
+    Input('preset-dropdown', 'value'),
+    Input('chart-checkboxes', 'value')
+)
+def update_chart(selected_preset, selected_charts):
+    charts = []
+    if selected_preset:
+        prof_list = selected_preset
     else:
-        raise ValueError('top parametr invalid')
+        prof_list = ['ML инженер', 'Data Scientist']
+    
+    if 'polar' in selected_charts:
+        polar_fig = plot_polar_graph(
+            df_plot_polar, prof_list=prof_list, intersect_skills=True)
+        charts.append(dcc.Graph(id='polar-plot', figure=polar_fig))
+    if 'scatter' in selected_charts:
+        scatter_fig = plot_skill_scatter(
+            df_plot_scatter, width=800, height=600)
+        charts.append(dcc.Graph(id='scatter-plot', figure=scatter_fig))
+    return charts
 
-    if alg.startswith('1-'):
-        n = 'none'
-        a = 'tnse'
-    elif alg.startswith('2-'):
-        n = 'prof'
-        a = 'tnse'
-    elif alg.startswith('3-'):
-        n = 'skill'
-        a = 'als'
-    else:
-        raise ValueError('alg parametr invalid')
-
-    df_plot_skill = pd.read_csv(f'data/plot_df/{a}-{n}-{top}-skill.csv')
-    fig = plot_skill_map(df_plot_skill, width=1200, height=750)
-    return fig 
 
 if __name__ == '__main__':
-    print('start from main front')
+    app.run_server(host='0.0.0.0')
 
-    #from werkzeug.serving import run_simple
-    #run_simple('127.0.0.1', 8050, app)
-
-    #app.run(host='127.0.0.1', debug=False)
-
-    app.run(host='0.0.0.0')
