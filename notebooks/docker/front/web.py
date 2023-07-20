@@ -7,19 +7,19 @@ import pickle
 import numpy as np
 
 
-with open('/home/roman/projects/DS-landscape/data/features/matrix.pkl', 'rb') as f:
+with open('data/polar/matrix.pkl', 'rb') as f:
     matrix = pickle.load(f)
 
-with open('/home/roman/projects/DS-landscape/data/features/prof_index_to_prof_name.pkl', 'rb') as f:
+with open('data/polar/prof_index_to_prof_name.pkl', 'rb') as f:
     prof_index_to_prof_name = pickle.load(f)
 
-with open('/home/roman/projects/DS-landscape/data/features/skill_index_to_corrected.pkl', 'rb') as f:
+with open('data/polar/skill_index_to_corrected.pkl', 'rb') as f:
     skill_index_to_corrected = pickle.load(f)
 
 skill_df = pd.read_csv(
-    '/home/roman/projects/DS-landscape/data/features/skills.csv')
+    'data/polar/skills.csv')
 prof_df = pd.read_csv(
-    '/home/roman/projects/DS-landscape/data/features/prof.csv')
+    'data/polar/prof.csv')
 
 m_max = np.max(matrix, axis=0)
 m_min = np.min(matrix, axis=0)
@@ -77,12 +77,26 @@ def plot_polar_graph(df: pd.DataFrame, prof_list: List[str], intersect_skills: b
 
 
 def plot_skill_scatter(df: pd.DataFrame, width: int = 800, height: int = 600) -> go.Figure:
+    color_list = [
+        '#F8A19F', '#AA0DFE', '#3283FE', '#1CBE4F', '#C4451C', '#F6222E', 
+        '#FE00FA', '#325A9B', '#FEAF16', 
+        '#90AD1C', '#2ED9FF', '#B10DA1',
+         '#909090', '#FBE426',
+        '#FA0087', '#C075A6', '#FC1CBF'
+    ]
+
+    prof_order = [
+        'Data Scientist', 'ML инженер', 'Computer Vision', 'NLP',
+        'Инженер данных', 'Big Data', 'Администратор баз данных', 'Аналитик данных',
+        'Аналитик', 'Бизнес-аналитик', 'Продуктовый аналитик', 'Аналитик BI',
+        'Системный аналитик' ]
+    
     fig = px.scatter(df, x='x', y='y',
                      color='Профессия', hover_name='Навык',
                      hover_data={'x': False, 'y': False,
                                  'size': False, 'Профессия': False},
-                     size='size', category_orders={'Профессия': profession_list},
-                     color_discrete_sequence=px.colors.qualitative.Safe,
+                     size='size', category_orders={'Профессия': prof_order},
+                     color_discrete_sequence=color_list,
                      title=None, width=width, height=height)
 
     fig.update_traces(marker=dict(opacity=0.7, line=dict(width=0.5, color='DarkSlateGrey')),
@@ -103,79 +117,87 @@ profession_list = [
 polar_fig = plot_polar_graph(
     df_plot_polar, prof_list=profession_list, intersect_skills=True, top_n=25)
 
-df_plot_scatter = pd.read_csv('data/plot_df/best.csv')
-scatter_fig = plot_skill_scatter(df_plot_scatter, width=800, height=600)
+df_plot_scatter = pd.read_csv('data/scatter/best.csv')
+scatter_fig = plot_skill_scatter(df_plot_scatter, width=1000, height=600)
 
 app = Dash(__name__)
 
-
-preset_bar_style = {
-    'display': 'flex',
-    'justify-content': 'flex-start',
-    'margin-bottom': '20px'
-}
-
-preset_dropdown_style = {
-    'width': '300px',
-    'margin-right': '10px'
+dropdownvalue_to_preset = {
+    0: ['ML инженер', 'Data Scientist'],
+    1: ['NLP', 'Computer Vision'],
+    2: ['Аналитик', 'Аналитик данных', 'Системный аналитик', 'Продуктовый аналитик', 'Аналитик BI',
+                                                               'Бизнес-аналитик'],
+    3: ['Инженер данных','Администратор баз данных', 'Big Data']
 }
 
 
 app.layout = html.Div(
     children=[
-        html.H4('Интерактивная карта навыков (можно выбрать разные режимы в выпадающих списках и кликать категории в легенде)'),
+        html.H1('Добро пожаловать в SkillMap: Ваш путеводитель в мир навыков и профессий'),
+        html.Div(id='descr',style={'font-size': '0.9em'}, children=[
+            html.P("SkillMap - инновационный сервис, созданный специально для тех, кто хочет успешно развиваться в современном образовательном и профессиональном пространстве. Независимо от того, являетесь ли вы студентом, кандидатом, специалистом, работодателем, менеджером по персоналу, менеджером продукта или автором учебных курсов, SkillMap поможет вам осуществить вашу учебную и профессиональную стратегию наиболее эффективно"),
+            html.P("Мы понимаем ваши потребности и проблемы. Вы стремитесь расширить свои навыки, понять, какие навыки наиболее востребованы и как их освоить. SkillMap предлагает вам уникальный инструмент для ориентирования в мире навыков и профессий."),
+            html.P("При посещении нашей веб-страницы вы получите уникальную карту, которая наглядно демонстрирует наиболее востребованные навыки и их взаимосвязи. Вы сможете увидеть, какие навыки и специальности наиболее востребованы, и как они взаимосвязаны между собой. Наша визуализация интерактивная и позволяет вам исследовать различные пути и варианты развития. Мы уверены, что наш сервис поможет вам увидеть широкий спектр возможностей и принять взвешенные решения в отношении ваших навыков и карьеры."),
+            html.P("SkillMap - ваш надежный партнер в путешествии по миру навыков Data Science. Подключайтесь к нашей платформе сегодня и начинайте достигать новых высот в своей учебе и карьере!"),
+
+            html.P("Выберите пресет профессий и количество навыков для круговой диаграммы. Или отметьте интересующие профессиии на точечной диаграмме. Двойной клик на профессии отключит все остальные."),
+
+            html.Br()
+        ]),
+
         html.Div(
-            id='preset-bar',
-            style=preset_bar_style,
+            style={'display': 'flex'},
             children=[
                 html.Div(
-                    style={'flex': '1', 'margin-right': '10px'},
+                    id='polar',
+                    style={
+                        'width': '33%',
+                        'justify-content': 'flex-start',
+                        'margin-bottom': '20px'
+                    },
                     children=[
-                        dcc.Dropdown(
-                            id='preset-dropdown',
-                            options=[
-                                {'label': 'DS и ML', 'value': ['ML инженер', 'Data Scientist']},
-                                {'label': 'NLP и CV', 'value': ['NLP', 'Computer Vision']},
-                                {'label': 'Аналитик', 'value': ['Системный аналитик', 'Продуктовый аналитик', 'Аналитик BI',
-                                                               'Аналитик', 'Бизнес-аналитик', 'Аналитик данных']},
-                                {'label': 'Данные', 'value': ['Администратор баз данных', 'Big Data', 'Инженер данных']}
-                            ],
-                            placeholder='Выберите пресет',
-                            value=['ML инженер', 'Data Scientist'],
+                        html.Div(
+                            style={'flex': '1', 'margin-right': '10px'},
+                            children=[
+                                dcc.Dropdown(
+                                    id='preset-dropdown',
+                                    options=[
+                                        {'label': 'DS и ML', 'value': 0},
+                                        {'label': 'NLP и CV', 'value': 1},
+                                        {'label': 'Аналитик', 'value': 2},
+                                        {'label': 'Данные', 'value': 3}
+                                    ],
+                                    value=0,
+                                    clearable=False
+                                ),
+                            ]
                         ),
+                        html.Div(
+                            style={'flex': '1'},
+                            children=[
+                                dcc.Slider(
+                                    id='num-skills-slider',
+                                    min=4,
+                                    max=40,
+                                    step=4,
+                                    value=12,
+                                    marks=None,
+                                )
+                            ]
+                        ),
+                        html.Div(id='chart-container', style={'display': 'flex'})
                     ]
                 ),
-                html.Div(
-                    style={'flex': '1', 'margin-right': '10px'},
-                    children=[
-                        dcc.Checklist(
-                            options=[
-                                {'label': 'Круговая диаграмма', 'value': 'polar'},
-                                {'label': 'Диаграмма рассеивания', 'value': 'scatter'}
-                            ],
-                            value=['polar', 'scatter'],
-                            id='chart-checkboxes',
-                            labelStyle={'display': 'inline-block', 'margin-right': '10px'}
-                        ),
-                    ]
-                ),
+                
                 html.Div(
                     style={'flex': '1'},
-                    children=[
-                        dcc.Slider(
-                            id='num-skills-slider',
-                            min=25,
-                            max=40,
-                            step=5,
-                            value=30,
-                            marks={i: str(i) for i in range(25, 41, 5)},
-                            tooltip={"placement": "bottom", "always_visible": True}
-                        )
-                    ]
-                ),
+                    children=[dcc.Graph(id='scatter-plot', figure=scatter_fig)]
+                )
             ]
-        ),
-        html.Div(id='chart-container', style={'display': 'flex'})
+        )
+
+        
+
     ]
 )
 
@@ -184,24 +206,22 @@ app.layout = html.Div(
 @app.callback(
     Output('chart-container', 'children'),
     Input('preset-dropdown', 'value'),
-    Input('chart-checkboxes', 'value'),
+    #Input('chart-checkboxes', 'value'),
     Input('num-skills-slider', 'value')
 )
-def update_chart(selected_preset, selected_charts, num_skills):
+def update_chart(selected_preset, 
+                 #selected_charts, 
+                 num_skills):
     charts = []
     if selected_preset:
-        prof_list = selected_preset
+        prof_list = dropdownvalue_to_preset[selected_preset]
     else:
-        prof_list = ['ML инженер', 'Data Scientist']
+        prof_list = dropdownvalue_to_preset[0]
     
-    if 'polar' in selected_charts:
-        polar_fig = plot_polar_graph(
-            df_plot_polar, prof_list=prof_list, intersect_skills=True, top_n=num_skills)
-        charts.append(dcc.Graph(id='polar-plot', figure=polar_fig))
-    if 'scatter' in selected_charts:
-        scatter_fig = plot_skill_scatter(
-            df_plot_scatter, width=800, height=600)
-        charts.append(dcc.Graph(id='scatter-plot', figure=scatter_fig))
+    polar_fig = plot_polar_graph(
+        df_plot_polar, prof_list=prof_list, intersect_skills=True, top_n=num_skills)
+    charts.append(dcc.Graph(id='polar-plot', figure=polar_fig, style={'width': '90vh'}))
+
     return charts
 
 
