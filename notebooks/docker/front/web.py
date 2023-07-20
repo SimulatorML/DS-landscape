@@ -111,7 +111,7 @@ app = Dash(__name__)
 
 preset_bar_style = {
     'display': 'flex',
-    'justify-content': 'center',
+    'justify-content': 'flex-start',
     'margin-bottom': '20px'
 }
 
@@ -128,32 +128,51 @@ app.layout = html.Div(
             id='preset-bar',
             style=preset_bar_style,
             children=[
-                dcc.Dropdown(
-                    id='preset-dropdown',
-                    options=[
-                        {'label': 'DS и ML', 'value': [
-                            'ML инженер', 'Data Scientist']},
-                        {'label': 'NLP и CV', 'value': [
-                            'NLP', 'Computer Vision']},
-                        {'label': 'Аналитик', 'value': ['Системный аналитик', 'Продуктовый аналитик', 'Аналитик BI',
-                                                        'Аналитик', 'Бизнес-аналитик', 'Аналитик данных']},
-                        {'label': 'Данные', 'value': [
-                            'Администратор баз данных', 'Big Data', 'Инженер данных']}
-                    ],
-                    placeholder='Выберите пресет',
-                    value=['ML инженер', 'Data Scientist'],
-                    style=preset_dropdown_style
+                html.Div(
+                    style={'flex': '1', 'margin-right': '10px'},
+                    children=[
+                        dcc.Dropdown(
+                            id='preset-dropdown',
+                            options=[
+                                {'label': 'DS и ML', 'value': ['ML инженер', 'Data Scientist']},
+                                {'label': 'NLP и CV', 'value': ['NLP', 'Computer Vision']},
+                                {'label': 'Аналитик', 'value': ['Системный аналитик', 'Продуктовый аналитик', 'Аналитик BI',
+                                                               'Аналитик', 'Бизнес-аналитик', 'Аналитик данных']},
+                                {'label': 'Данные', 'value': ['Администратор баз данных', 'Big Data', 'Инженер данных']}
+                            ],
+                            placeholder='Выберите пресет',
+                            value=['ML инженер', 'Data Scientist'],
+                        ),
+                    ]
                 ),
-                dcc.Checklist(
-                    options=[
-                        {'label': 'Круговая диаграмма', 'value': 'polar'},
-                        {'label': 'Диаграмма рассеивания', 'value': 'scatter'}
-                    ],
-                    value=['polar', 'scatter'],
-                    id='chart-checkboxes',
-                    labelStyle={'display': 'inline-block',
-                                'margin-right': '10px'}
-                )
+                html.Div(
+                    style={'flex': '1', 'margin-right': '10px'},
+                    children=[
+                        dcc.Checklist(
+                            options=[
+                                {'label': 'Круговая диаграмма', 'value': 'polar'},
+                                {'label': 'Диаграмма рассеивания', 'value': 'scatter'}
+                            ],
+                            value=['polar', 'scatter'],
+                            id='chart-checkboxes',
+                            labelStyle={'display': 'inline-block', 'margin-right': '10px'}
+                        ),
+                    ]
+                ),
+                html.Div(
+                    style={'flex': '1'},
+                    children=[
+                        dcc.Slider(
+                            id='num-skills-slider',
+                            min=25,
+                            max=40,
+                            step=5,
+                            value=30,
+                            marks={i: str(i) for i in range(25, 41, 5)},
+                            tooltip={"placement": "bottom", "always_visible": True}
+                        )
+                    ]
+                ),
             ]
         ),
         html.Div(id='chart-container', style={'display': 'flex'})
@@ -161,12 +180,14 @@ app.layout = html.Div(
 )
 
 
+
 @app.callback(
     Output('chart-container', 'children'),
     Input('preset-dropdown', 'value'),
-    Input('chart-checkboxes', 'value')
+    Input('chart-checkboxes', 'value'),
+    Input('num-skills-slider', 'value')
 )
-def update_chart(selected_preset, selected_charts):
+def update_chart(selected_preset, selected_charts, num_skills):
     charts = []
     if selected_preset:
         prof_list = selected_preset
@@ -175,7 +196,7 @@ def update_chart(selected_preset, selected_charts):
     
     if 'polar' in selected_charts:
         polar_fig = plot_polar_graph(
-            df_plot_polar, prof_list=prof_list, intersect_skills=True)
+            df_plot_polar, prof_list=prof_list, intersect_skills=True, top_n=num_skills)
         charts.append(dcc.Graph(id='polar-plot', figure=polar_fig))
     if 'scatter' in selected_charts:
         scatter_fig = plot_skill_scatter(
@@ -186,4 +207,3 @@ def update_chart(selected_preset, selected_charts):
 
 if __name__ == '__main__':
     app.run_server(host='0.0.0.0')
-
